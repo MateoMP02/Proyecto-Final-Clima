@@ -1,0 +1,30 @@
+<main class="main">
+    <div>
+        <form [formGroup]="searchCityBar" (ngSubmit)="onSubmit()">
+            <input formControlName="city" placeholder="Select the city" (keyup.enter)="onSubmit()" />
+        </form>
+
+        <div class="input-container">
+            <button (click)="toggleInputs()">
+                {{ inputsVisible ? 'Hide Inputs' : 'Show Inputs' }}
+            </button>
+
+            <div *ngIf="inputsVisible" class="input-fields">
+                <form [formGroup]="searchLatLonBar" (ngSubmit)="onSubmit()">
+                    <input type="text" placeholder="Latitude" formControlName="lat" (keyup.enter)="onSubmit()" />
+                    <input type="text" placeholder="Longitude" formControlName="lon" (keyup.enter)="onSubmit()" />
+
+                    <div *ngIf="searchLatLonBar.get('lat')?.invalid && (searchLatLonBar.get('lat')?.touched || searchLatLonBar.get('lat')?.dirty)">
+                        <small *ngIf="searchLatLonBar.get('lat')?.errors?.['required']">Latitude is required</small>
+                        <small *ngIf="searchLatLonBar.get('lat')?.errors?.['minlength']">Latitude must be at least 2 characters long</small>
+                    </div>
+
+                    <div *ngIf="searchLatLonBar.get('lon')?.invalid && (searchLatLonBar.get('lon')?.touched || searchLatLonBar.get('lon')?.dirty)">
+                        <small *ngIf="searchLatLonBar.get('lon')?.errors?.['required']">Longitude is required</small>
+                        <small *ngIf="searchLatLonBar.get('lon')?.errors?.['minlength']">Longitude must be at least 2 characters long</small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

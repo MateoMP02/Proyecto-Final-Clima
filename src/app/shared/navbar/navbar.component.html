@@ -1,6 +1,7 @@
-<nav>
-    <a href="" routerLink="current/coordinates">current coord</a>
-    <a href="" routerLink="current/city">current city</a>
-    <a href="" routerLink="forecast/coordinates">forecast coord</a>
-    <a href="" routerLink="forecast/city">forecast city</a>
-</nav>
+<nav class="navbar">
+    <a *ngIf="!isLoggedIn" routerLink="/login">Log in</a>
+    <a *ngIf="!isLoggedIn" routerLink="/register">Register</a>
+    <a *ngIf="isLoggedIn" (click)="toggleLogin()" routerLink="/logout">Log out</a>
+
+    <a *ngIf="!isLoggedIn" routerLink="/search">(imagen) home</a>
+  </nav>

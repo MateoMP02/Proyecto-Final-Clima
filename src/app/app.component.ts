@@ -4,11 +4,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { WeatherService } from './services/weather.service';
 import { NavbarComponent } from "./shared/navbar/navbar.component";
+import { LocationSearchComponent } from "./components/location-search/location-search.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, CommonModule, NavbarComponent],
+  imports: [RouterOutlet, ReactiveFormsModule, CommonModule, NavbarComponent, LocationSearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

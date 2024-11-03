@@ -1,0 +1,17 @@
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+button {
+    margin-top: 10px;
+}
+
+input {
+    margin-right: 5px;
+}
+
+.input-fields {
+    margin-left: 10px; 
+    display: flex; 
+}
