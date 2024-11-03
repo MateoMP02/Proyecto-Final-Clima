@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": "c651",
+      "username": "asdasd",
+      "password": "asd123",
+      "email": "asd@gmail.com",
+      "residenceCity": "",
+      "searchHistory": []
+    },
+    {
+      "id": "62a2",
+      "username": "asdasdasd",
+      "password": "asdasdasdasd",
+      "email": "pepe@gmail.com",
+      "residenceCity": "",
+      "searchHistory": []
+    },
+    {
+      "id": "6469",
+      "username": "asdasd",
+      "password": "asdasd",
+      "email": "asd123@gmail.com",
+      "residenceCity": "",
+      "searchHistory": []
+    },
+    {
+      "id": "30db",
+      "username": "asdasd",
+      "password": "asdasdasd",
+      "email": "123123@gmail.com",
+      "residenceCity": "",
+      "searchHistory": []
+    },
+    {
+      "id": "69bd",
+      "username": "asdasd123",
+      "password": "asdadasd",
+      "email": "pepepe@gmail.com",
+      "residenceCity": "mar del plata",
+      "searchHistory": []
+    }
+  ]
+}

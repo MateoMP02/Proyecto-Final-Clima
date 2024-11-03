@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UsersService } from '../../../services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +13,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class RegisterComponent {
   fb = inject(FormBuilder);
+  router = inject(Router)
 
   registerForm = this.fb.nonNullable.group({
     username: ['', [Validators.required, Validators.minLength(4)]],
@@ -19,10 +22,44 @@ export class RegisterComponent {
     residenceCity:['',[Validators.minLength(3)]] //No es requerido
   })
 
-  onSubmit() {
+
+
+  username: string = '';
+  password: string = '';
+  residenceCity: string = '';
+  errorMessage: string = '';
+  email: string = '';
+
+  constructor(private usersService: UsersService) {}
+
+
+  
+  register(): void {
     if (this.registerForm.valid) {
-        
-        console.log(this.registerForm.value);
+      const formValue = this.registerForm.value;
+
+      const username = formValue.username!;
+      const password = formValue.password!;
+      const email = formValue.email!; 
+
+      this.usersService.register({
+        username: username,
+        password: password,
+        email: email,
+        residenceCity: formValue.residenceCity,
+        searchHistory: []
+      }).subscribe({
+        next: () =>{ alert('Registration successful')
+          this.router.navigate(['/search'])
+      },
+        error: (err) => {
+          if (err.message === 'This email is already registered.') {
+            alert('This email is already registered. Please use a different one.') 
+          } 
+        }
+      });
+    } else {
+      this.errorMessage = 'Please fill in all required fields.';
     }
-}
+  }
 }

@@ -3,6 +3,6 @@ export interface User {
     username:string;
     password:string;
     email:string;
-    residenceCity:string;
-    searchHistory:string[];
+    residenceCity?:string;
+    searchHistory?:string[];
 }
