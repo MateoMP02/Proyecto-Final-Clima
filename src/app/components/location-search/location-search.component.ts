@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-location-search',
@@ -12,8 +13,8 @@ import { Router } from '@angular/router';
 })
 export class LocationSearchComponent {
   fb = inject(FormBuilder);
-
-  router = inject(Router)
+  router = inject(Router);
+  authService = inject(AuthService);
 
   searchCityBar = this.fb.nonNullable.group({
     city: ['', [
@@ -24,36 +25,75 @@ export class LocationSearchComponent {
   });
 
   searchLatLonBar = this.fb.nonNullable.group({
-    lat:['',[Validators.required]],
-    lon:['',[Validators.required]]
-  })
+    lat: ['', [Validators.required]],
+    lon: ['', [Validators.required]]
+  });
 
-  
-  //Para cuando se toque el boton aparezcan los inputs
   inputsVisible: boolean = false;
 
   toggleInputs() {
     this.inputsVisible = !this.inputsVisible;
   }
-  
 
   onSubmit() {
+    const currentUser = this.authService.getCurrentUser(); // Obtener el usuario actual
+    
     if (this.searchCityBar.valid) {
-      const city = this.searchCityBar.get('city')?.value;
-   
-      this.router.navigate(['/overview'], { queryParams: { city } });
-      
+      this.handleCitySearch(currentUser);
     } else if (this.searchLatLonBar.valid) {
-      const lat = this.searchLatLonBar.get('lat')?.value;
-      const lon = this.searchLatLonBar.get('lon')?.value;
-
-      if (Number(lat) < -90 || Number(lat) > 90 || Number(lon) < -180 || Number(lon) > 180) {
-        console.error('Coordinates are out of range.');
-        alert('Please enter valid coordinates: Latitude must be between -90 and 90, Longitude between -180 and 180.');
-        return;
-      }
-     
-      this.router.navigate(['/overview'], { queryParams: { lat, lon } });
+      this.handleLatLonSearch(currentUser);
     }
   }
+  
+  handleCitySearch(currentUser: any) {
+    const city = this.searchCityBar.get('city')?.value || ''; // Me aseguro que es un string
+  
+    if (currentUser) {
+      this.updateSearchHistory(currentUser, city);
+    } else {
+      console.log('Search performed without logged-in user. History not saved.');
+    }
+  
+    // Realizar la navegación a la página de resultados
+    this.router.navigate(['/overview'], { queryParams: { city } });
+  }
+  
+  handleLatLonSearch(currentUser: any) {
+    const lat = this.searchLatLonBar.get('lat')?.value || '';
+    const lon = this.searchLatLonBar.get('lon')?.value || '';
+  
+    if (this.areCoordinatesValid(lat, lon)) {
+      if (currentUser) {
+        const location = `Lat: ${lat}, Lon: ${lon}`;
+        this.updateSearchHistory(currentUser, location);
+      } else {
+        console.log('Search performed without logged-in user. History not saved.');
+      }
+  
+      // Realizar la navegación a la página de resultados
+      this.router.navigate(['/overview'], { queryParams: { lat, lon } });
+    } else {
+      console.error('Coordinates are out of range.');
+      alert('Please enter valid coordinates: Latitude must be between -90 and 90, Longitude between -180 and 180.');
+    }
+  }
+  
+  areCoordinatesValid(lat: string, lon: string): boolean {
+    return !(Number(lat) < -90 || Number(lat) > 90 || Number(lon) < -180 || Number(lon) > 180);
+  }
+  
+  updateSearchHistory(currentUser: any, searchItem: string) {
+    currentUser.searchHistory = currentUser.searchHistory || [];
+    currentUser.searchHistory.push(searchItem);
+  
+    this.authService.updateUser(currentUser).subscribe({
+      next: () => {
+        console.log('Search history updated for authenticated user.');
+      },
+      error: (err) => {
+        console.error('Error updating user history:', err);
+      }
+    });
+  }
+  
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UsersService } from '../../../services/users.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   fb = inject(FormBuilder);
   router = inject(Router)
+  authService = inject(AuthService);
 
   registerForm = this.fb.nonNullable.group({
     username: ['', [Validators.required, Validators.minLength(4)]],
@@ -30,11 +31,8 @@ export class RegisterComponent {
   errorMessage: string = '';
   email: string = '';
 
-  constructor(private usersService: UsersService) {}
-
-
   
-  register(): void {
+  register() {
     if (this.registerForm.valid) {
       const formValue = this.registerForm.value;
 
@@ -42,7 +40,7 @@ export class RegisterComponent {
       const password = formValue.password!;
       const email = formValue.email!; 
 
-      this.usersService.register({
+      this.authService.register({
         username: username,
         password: password,
         email: email,

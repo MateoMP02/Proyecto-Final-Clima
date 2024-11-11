@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UsersService } from '../../../services/users.service';
+import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { User } from '../../../types/user';
@@ -15,6 +15,7 @@ import { User } from '../../../types/user';
 export class LoginComponent {
   fb = inject(FormBuilder);
   router = inject(Router)
+  authService = inject(AuthService);
 
   loginForm = this.fb.nonNullable.group({
     username: ['', [Validators.required, Validators.minLength(4)]],
@@ -27,27 +28,25 @@ export class LoginComponent {
   residenceCity?: string;
   searchHistory?: string[];
 
-  constructor(private usersService: UsersService) {}
-
-  login(): void {
+  login() {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
 
       const username = formValue.username!;
       const password = formValue.password!;
 
-      this.usersService.login(username, password).subscribe({
-        next: (user: User | null) => {
+      this.authService.login(username, password).subscribe({
+        next: (user) => {
           if (user) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
             alert('Login successful');
-            this.router.navigate(['/search'])
+            this.router.navigate(['/search']); // Redirige a la página principal
           } else {
             this.errorMessage = 'Invalid username or password';
           }
         },
-        error: (err) => {
+        error: () => {
           this.errorMessage = 'Login failed. Please try again later.';
-          console.error('Login error:', err);
         }
       });
     } else {

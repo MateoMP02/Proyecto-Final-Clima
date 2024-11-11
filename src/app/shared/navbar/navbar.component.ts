@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,17 +11,14 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  isLoggedIn: boolean = false;
 
-  toggleLogin() {
-    this.isLoggedIn = !this.isLoggedIn; 
+  constructor(private authService: AuthService) {}
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
-  login() {
-    this.isLoggedIn = true; // Aca habria que autenticar 
-  }
-
-  logout() {
-    this.isLoggedIn = false; // Aca habria que autenticar
+  logout(): void {
+    this.authService.logout();
   }
 }

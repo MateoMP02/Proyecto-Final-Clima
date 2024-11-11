@@ -1,16 +1,18 @@
 import { Routes } from '@angular/router';
-import { LocationSearchComponent } from './components/location-search/location-search.component';
 import { WeatherOverviewComponent } from './components/weather-overview/weather-overview.component';
 import { WeatherDetailComponent } from './components/weather-detail/weather-detail.component';
-import { RegisterComponent } from './components/account/register/register.component';
-import { LoginComponent } from './components/account/login/login.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 export const routes: Routes = [
-  { path: 'search', component: LocationSearchComponent },
+  { path: 'search', component: HomePageComponent },
   { path: 'overview', component: WeatherOverviewComponent },
   { path: 'detail/:date', component: WeatherDetailComponent }, // Revisar luego
-  {path: 'register', component:RegisterComponent},
-  {path: 'login', component:LoginComponent},
+  {path: 'register', component:RegisterPageComponent},
+  {path: 'login', component:LoginPageComponent},
+  {path: 'profile', component:ProfilePageComponent},
   { path: '', redirectTo: '/search', pathMatch: 'full' },
   {path: '**', redirectTo: '/search'}
 ];

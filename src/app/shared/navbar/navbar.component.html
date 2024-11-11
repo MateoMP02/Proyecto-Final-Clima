@@ -1,7 +1,7 @@
 <nav class="navbar">
-    <a *ngIf="!isLoggedIn" routerLink="/login">Log in</a>
-    <a *ngIf="!isLoggedIn" routerLink="/register">Register</a>
-    <a *ngIf="isLoggedIn" (click)="toggleLogin()" routerLink="/logout">Log out</a>
-
-    <a *ngIf="!isLoggedIn" routerLink="/search">(imagen) home</a>
-  </nav>
+  <a *ngIf="!isLoggedIn()" routerLink="/login">Login</a>
+  <a *ngIf="!isLoggedIn()" routerLink="/register">Register</a>
+  <a *ngIf="isLoggedIn()" routerLink="/login" (click)="logout()">Logout</a>
+  <a *ngIf="isLoggedIn()" routerLink="/profile">Profile</a>
+  <a routerLink="/search">(imagen) home</a>
+</nav>

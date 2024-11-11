@@ -5,6 +5,7 @@
     <input id="username" formControlName="username" placeholder="Enter your username" />
     <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || loginForm.get('username')?.dirty)">
       <small *ngIf="loginForm.get('username')?.errors?.['required']">Username is required.</small>
+      <small *ngIf="loginForm.get('username')?.errors?.['minlength']">Username must be at least 4 characters long.</small>
     </div>
   </div>
 
@@ -13,6 +14,7 @@
     <input type="password" id="password" formControlName="password" placeholder="Enter your password" />
     <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
       <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+      <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 4 characters long.</small>
     </div>
   </div>
 

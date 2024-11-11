@@ -6,7 +6,7 @@ import { User } from '../types/user';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class AuthService {
 
   constructor(private http: HttpClient) { }
 
@@ -54,7 +54,19 @@ export class UsersService {
     return user ? JSON.parse(user) : null;
   }
 
+  updateUser(user: User): Observable<User> {
+    const url = `${this.url}/${user.id}`;
+    localStorage.setItem('currentUser', JSON.stringify(user)); // Actualiza en localStorage
+    return this.http.put<User>(url, user, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
+  }
+
   logout(): void {
     localStorage.removeItem('currentUser');
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('currentUser') !== null;
   }
 }

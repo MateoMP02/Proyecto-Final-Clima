@@ -32,24 +32,6 @@ export class AppComponent {
   weatherService = inject(WeatherService)
 
 
-  onSubmitCoordinates(): void {
-    if (this.form.invalid) return;
-
-    const lat = this.form.get('lat')?.value;
-    const lon = this.form.get('lon')?.value; 
-
-    if (Number(lat) < -90 || Number(lat) > 90 || Number(lon) < -180 || Number(lon) > 180) {
-      console.error('Coordinates are out of range.');
-      alert('Please enter valid coordinates: Latitude must be between -90 and 90, Longitude between -180 and 180.');
-      return;
-    }
-
-    
-    if (lat !== null && lon !== null) {
-      console.log('Form submitted with coordinates:', lat, lon);
-      this.getWeatherByCoordinates(Number(lat),Number(lon));
-    }
-  }
 
   getWeatherByCoordinates(lat: number, lon: number): void {
     this.weatherService.getWeatherByCoordinates(lat, lon).subscribe(

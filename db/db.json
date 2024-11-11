@@ -5,8 +5,10 @@
       "username": "asdasd",
       "password": "asd123",
       "email": "asd@gmail.com",
-      "residenceCity": "",
-      "searchHistory": []
+      "residenceCity": "brasilia",
+      "searchHistory": [
+        "Lat: 12, Lon: 12"
+      ]
     },
     {
       "id": "62a2",
@@ -37,8 +39,13 @@
       "username": "asdasd123",
       "password": "asdadasd",
       "email": "pepepe@gmail.com",
-      "residenceCity": "mar del plata",
-      "searchHistory": []
+      "residenceCity": "brasil",
+      "searchHistory": [
+        "cuba",
+        "asd",
+        "groelandia",
+        "asd"
+      ]
     }
   ]
 }
