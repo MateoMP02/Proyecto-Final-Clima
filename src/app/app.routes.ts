@@ -7,12 +7,12 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 export const routes: Routes = [
-  { path: 'search', component: HomePageComponent },
-  { path: 'overview', component: WeatherOverviewComponent },
-  { path: 'detail/:date', component: WeatherDetailComponent }, // Revisar luego
+  {path: 'search', component: HomePageComponent },
+  {path: 'overview', component: WeatherOverviewComponent },
+  {path: 'detail/:date', component: WeatherDetailComponent }, // Revisar luego
   {path: 'register', component:RegisterPageComponent},
   {path: 'login', component:LoginPageComponent},
   {path: 'profile', component:ProfilePageComponent},
-  { path: '', redirectTo: '/search', pathMatch: 'full' },
+  {path: '', redirectTo: '/search', pathMatch: 'full' },
   {path: '**', redirectTo: '/search'}
 ];
