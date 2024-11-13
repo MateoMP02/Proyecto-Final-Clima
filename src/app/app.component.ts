@@ -24,6 +24,9 @@ export class AppComponent {
 
   weatherData: any;
 
+
+  
+
   form = this.fb.nonNullable.group({
     lat:[[Validators.required]],
     lon:[[Validators.required]]

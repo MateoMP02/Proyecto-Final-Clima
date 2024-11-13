@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
 import { CommonModule } from '@angular/common';
@@ -16,6 +16,7 @@ export class WeatherOverviewComponent implements OnInit {
   city: string | null = null;
   lat: number | null = null;
   lon: number | null = null;
+
 
   dailyForecast: any[] = [];
 
@@ -43,10 +44,9 @@ export class WeatherOverviewComponent implements OnInit {
         });
 
         this.weatherService.getForecastByCity(this.city).subscribe(data => {
-          this.forecastData = data;
+          this.forecastData = data;  
           console.log(this.forecastData);
-          
-          
+           
         });
       }
       
@@ -76,5 +76,7 @@ export class WeatherOverviewComponent implements OnInit {
       minute: '2-digit', 
       hour12: true 
     }).format(date);
-  }
+  } 
+
+ 
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../types/user';
 import { CommonModule } from '@angular/common';
@@ -11,7 +11,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
   currentUser: User | null = null;
   isEditingCity = false;  // flag
   

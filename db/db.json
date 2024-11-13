@@ -5,9 +5,11 @@
       "username": "asdasd",
       "password": "asd123",
       "email": "asd@gmail.com",
-      "residenceCity": "brasilia",
+      "residenceCity": "nigeria",
       "searchHistory": [
-        "Lat: 12, Lon: 12"
+        "Lat: 12, Lon: 12",
+        "peru",
+        "nigeria"
       ]
     },
     {
@@ -15,8 +17,10 @@
       "username": "asdasdasd",
       "password": "asdasdasdasd",
       "email": "pepe@gmail.com",
-      "residenceCity": "",
-      "searchHistory": []
+      "residenceCity": "brasilia",
+      "searchHistory": [
+        "bolivia"
+      ]
     },
     {
       "id": "6469",

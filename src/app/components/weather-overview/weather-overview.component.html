@@ -5,10 +5,10 @@
       <div *ngIf="weatherData">
         <h2>{{ weatherData.name ? 'Weather in ' + weatherData.name : 'The name of the location is unknown' }}</h2>
         <p><strong>Timezone:</strong> {{ weatherData.timezone }}</p>
-        <p><strong>Temperature:</strong> {{ weatherData.main.temp }}°C</p>
-        <p><strong>Feels Like:</strong> {{ weatherData.main.feels_like }}°C</p>
-        <p><strong>Min Temperature:</strong> {{ weatherData.main.temp_min }}°C</p>
-        <p><strong>Max Temperature:</strong> {{ weatherData.main.temp_max }}°C</p>
+        <p><strong>Temperature:</strong> {{ weatherData.main.temp }}°K</p>
+        <p><strong>Feels Like:</strong> {{ weatherData.main.feels_like }}°K</p>
+        <p><strong>Min Temperature:</strong> {{ weatherData.main.temp_min }}°K</p>
+        <p><strong>Max Temperature:</strong> {{ weatherData.main.temp_max }}°K</p>
         <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
         <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
         <p><strong>Weather:</strong> {{ weatherData.weather[0].description }}</p>
@@ -19,16 +19,17 @@
         <p><strong>Sunset:</strong> {{ convertUnixTime(weatherData.sys.sunset, weatherData.timezone) }}</p>
       </div>
 
-      <div *ngIf="dailyForecast.length > 0">
-        <h2>Weather Forecast</h2>
+      
         
-        <div *ngFor="let forecast of dailyForecast">
-          <p><strong>Forecast Date:</strong> {{ formatForecastDate(forecast.date) }}</p>
-          <p><strong>Temperature Max:</strong> {{ forecast.tempMax }}°C</p>
-          <p><strong>Temperature Min:</strong> {{ forecast.tempMin }}°C</p>
-          <p><strong>Weather:</strong> {{ forecast.weather }}</p>
-          <p><strong>Wind Speed:</strong> {{ forecast.windSpeed }} m/s</p>
-          <p><strong>Cloudiness:</strong> {{ forecast.cloudiness }}%</p>
+      <div *ngIf="forecastData">
+        <h2>Forecast</h2>
+        <div *ngFor="let forecast of forecastData.list">
+          <p><strong>Forecast Date:</strong> {{ formatForecastDate(forecast.dt_txt) }}</p>
+          <p><strong>Temperature:</strong> {{ forecast.main.temp }}°K</p>
+          <p><strong>Weather:</strong> {{ forecast.weather[0].description }}</p>
+          <p><strong>Wind Speed:</strong> {{ forecast.wind.speed }} m/s</p>
+          <p><strong>Cloudiness:</strong> {{ forecast.clouds.all }}%</p>
         </div>
       </div>
-  </div>
+      </div>
+  
