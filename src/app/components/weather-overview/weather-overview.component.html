@@ -19,7 +19,7 @@
         <p><strong>Sunset:</strong> {{ convertUnixTime(weatherData.sys.sunset, weatherData.timezone) }}</p>
       </div>
 
-      
+      <div id="map" style="height: 400px; margin-top: 20px;"></div>
         
       <div *ngIf="forecastData">
         <h2>Forecast</h2>

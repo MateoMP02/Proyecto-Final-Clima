@@ -2,7 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
 import { CommonModule } from '@angular/common';
-
+import * as L from 'leaflet';
 @Component({
   selector: 'app-weather-overview',
   standalone: true,
@@ -16,7 +16,7 @@ export class WeatherOverviewComponent implements OnInit {
   city: string | null = null;
   lat: number | null = null;
   lon: number | null = null;
-
+  private map: L.Map | null = null;
 
   dailyForecast: any[] = [];
 
@@ -41,6 +41,9 @@ export class WeatherOverviewComponent implements OnInit {
       } else if (this.city) {
         this.weatherService.getWeatherByCity(this.city).subscribe(data => {
           this.weatherData = data;
+          this.lat = data.coord.lat;
+          this.lon = data.coord.lon;
+          this.initMap(this.lat!, this.lon!);
         });
 
         this.weatherService.getForecastByCity(this.city).subscribe(data => {
@@ -52,8 +55,22 @@ export class WeatherOverviewComponent implements OnInit {
       
     });
   }
-
-
+  private initMap(lat: number, lon: number) {
+    if (this.map) {
+      this.map.setView([lat, lon], 10); // Actualiza la vista si el mapa ya está creado
+    } else {
+      this.map = L.map('map').setView([lat, lon], 10);
+      
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(this.map);
+      
+      L.marker([lat, lon]).addTo(this.map)
+        .bindPopup('Ubicación seleccionada')
+        .openPopup();
+    }
+  }
+  
   convertUnixTime(unixTime: number, timezoneOffset: number): string { //Calculo para transformar el sunrise y sunset en información legible
     const date = new Date((unixTime + timezoneOffset) * 1000); 
     return new Intl.DateTimeFormat('en-US', {
