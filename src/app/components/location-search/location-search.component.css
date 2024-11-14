@@ -1,0 +1,25 @@
+.main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .city-form {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaciado entre elementos */
+  }
+
+  .lat-lon-fields {
+    display: flex;
+    gap: 10px; /* Espaciado entre los inputs de latitud y longitud */
+  }
+
+  .toggle-button {
+    white-space: nowrap; /* Evita que el texto se divida */
+  }

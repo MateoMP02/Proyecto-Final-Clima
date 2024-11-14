@@ -1,0 +1,63 @@
+.navbar {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin: 0;
+}
+
+.navbar a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #f0f2f5;
+    color: chocolate;
+}
+
+.app-location-search {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .navbar a {
+        margin-bottom: 10px;
+    }
+
+    .app-location-search {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.home-link {
+    display: flex;                /* Usamos flexbox para alinear la imagen y el texto */
+    align-items: center;          /* Alineamos la imagen y el texto verticalmente */
+    text-decoration: none;        /* Eliminamos el subrayado del enlace */
+    color: inherit;               /* Mantenemos el color del texto como el valor predeterminado */
+  }
+  
+  .home-icon {
+    width: 24px;                  /* Ajustamos el tamaño de la imagen */
+    height: 24px;
+    margin-right: 8px;            /* Agregamos espacio entre la imagen y el texto */
+  }
+  
+  .home-link:hover {
+    color: #007bff;               /* Cambiamos el color al pasar el mouse, ejemplo con color azul */
+  }

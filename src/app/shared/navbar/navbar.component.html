@@ -1,0 +1,10 @@
+<nav class="navbar">
+  <a *ngIf="!isLoggedIn()" routerLink="/login">Login</a>
+  <a *ngIf="!isLoggedIn()" routerLink="/register">Register</a>
+  <a *ngIf="isLoggedIn()" routerLink="/login" (click)="logout()">Logout</a>
+  <a *ngIf="isLoggedIn()" routerLink="/profile">Profile</a>
+  <a routerLink="/search">(imagen) home</a>
+  <a routerLink="/glossary">Glossary</a>
+
+
+</nav>

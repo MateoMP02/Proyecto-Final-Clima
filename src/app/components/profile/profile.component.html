@@ -1,0 +1,34 @@
+<h2>User Profile</h2>
+
+<div *ngIf="currentUser; else noUser">
+  <p><strong>Username:</strong> {{ currentUser.username }}</p>
+  <p><strong>Email:</strong> {{ currentUser.email }}</p>
+
+  <div>
+    <strong>Residence City:</strong>
+    <span *ngIf="!isEditingCity">{{ currentUser.residenceCity }}</span>
+    <div *ngIf="isEditingCity">
+      <form [formGroup]="residenceCityForm" (ngSubmit)="changeResidenceCity()">
+        <input formControlName="residenceCity" />
+        <button type="submit" [disabled]="!residenceCityForm.valid">Save</button>
+      </form>
+    </div>
+    <button (click)="toggleEditCity()">
+      {{ isEditingCity ? 'Cancel' : 'Edit' }}
+    </button>
+  </div>
+
+  <h3>Search History</h3>
+  <ul>
+    <li *ngFor="let city of currentUser.searchHistory">
+      {{ city }}
+    </li>
+  </ul>
+  <button (click)="clearSearchHistory()">Clear search history</button>
+  <h4>Eliminar Usuario</h4>
+  <button (click)="deleteUser()">Eliminar</button>
+</div>
+
+<ng-template #noUser>
+  <p>No user is logged in. Please log in to see your profile.</p>
+</ng-template>
