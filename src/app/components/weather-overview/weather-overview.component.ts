@@ -17,7 +17,7 @@ export class WeatherOverviewComponent implements OnInit {
   lat: number | null = null;
   lon: number | null = null;
   private map: L.Map | null = null;
-
+  isNotFound: boolean = false;
   dailyForecast: any[] = [];
 
 
