@@ -35,7 +35,7 @@
     </section>
   </main>
   
-  <section *ngIf="forecastData" class="clearfix" aria-labelledby="forecast-header">
+  <section *ngIf="forecastData && !isNotFound && weatherData" class="clearfix" aria-labelledby="forecast-header">
     <header id="forecast-header" class="headeer">
       <h2>Forecast</h2>
     </header>

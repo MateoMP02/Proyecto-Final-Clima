@@ -16,16 +16,6 @@ export class NavbarComponent {
   hideLocationSearch: boolean = false;
   authService = inject(AuthService);
 
-  constructor(private router: Router) {
-    // Escuchar eventos de navegación para actualizar la visibilidad del componente de búsqueda
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-
-        this.hideLocationSearch = ['/login', '/register', '/search'].some(route => event.url.includes(route));
-      }
-    });
-  }
-
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
@@ -33,4 +23,6 @@ export class NavbarComponent {
   logout(): void {
     this.authService.logout();
   }
+
+  
 }
