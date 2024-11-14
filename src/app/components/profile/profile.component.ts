@@ -56,7 +56,9 @@ export class ProfileComponent implements OnInit{
     }
   }
   deleteUser() {
-    if (this.currentUser) {
+    const confirmed = window.confirm('¿Estás seguro de que quieres eliminar este elemento?');
+    if(confirmed){
+      if (this.currentUser) {
       this.authService.deleteUser(this.currentUser).subscribe({
         next: () => {
           alert('User deleted successfully.');
@@ -71,6 +73,10 @@ export class ProfileComponent implements OnInit{
         }
       });
     }
+    }else{
+      console.log("Cancelando la eliminacion de Usuario");
+    }
+    
   }
 
   changeResidenceCity() {
