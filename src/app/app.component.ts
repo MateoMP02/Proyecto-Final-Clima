@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { WeatherService } from './services/weather.service';
 import { NavbarComponent } from "./shared/navbar/navbar.component";
@@ -9,7 +9,7 @@ import { LocationSearchComponent } from "./components/location-search/location-s
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, CommonModule, NavbarComponent, LocationSearchComponent],
+  imports: [RouterOutlet, ReactiveFormsModule, CommonModule, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,0 +1,10 @@
+.temperature-container {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos en una columna */
+    gap: 8px; /* Espacio entre cada párrafo */
+  }
+  
+  .temperature-container p {
+    margin: 0; /* Elimina márgenes predeterminados de los párrafos */
+  }
+  
