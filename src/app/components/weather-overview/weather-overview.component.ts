@@ -16,6 +16,7 @@ export class WeatherOverviewComponent implements OnInit {
   city: string | null = null;
   lat: number | null = null;
   lon: number | null = null;
+  isNotFound: boolean = false;
 
 
   dailyForecast: any[] = [];
@@ -25,33 +26,60 @@ export class WeatherOverviewComponent implements OnInit {
   weatherService = inject(WeatherService);
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => { //tuve que hacerlo con queryparams porque me tiraba un error en +params
+    this.route.queryParams.subscribe(params => {
       this.city = params['city'] || null;
       this.lat = params['lat'] ? +params['lat'] : null;
       this.lon = params['lon'] ? +params['lon'] : null;
-      
+      this.isNotFound = false; 
+  
       if (this.lat !== null && this.lon !== null) {
-        this.weatherService.getWeatherByCoordinates(this.lat, this.lon).subscribe(data => {
-          this.weatherData = data;
-        });
-
-        this.weatherService.getForecastByCoordinates(this.lat, this.lon).subscribe(data => {
-          this.forecastData = data;
-        });
+        this.weatherService.getWeatherByCoordinates(this.lat, this.lon).subscribe(
+          data => {
+            this.weatherData = data;
+          },
+          error => {
+            if (error.status === 404) {
+              this.isNotFound = true;
+            }
+          }
+        );
+  
+        this.weatherService.getForecastByCoordinates(this.lat, this.lon).subscribe(
+          data => {
+            this.forecastData = data;
+          },
+          error => {
+            if (error.status === 404) {
+              this.isNotFound = true; 
+            }
+          }
+        );
       } else if (this.city) {
-        this.weatherService.getWeatherByCity(this.city).subscribe(data => {
-          this.weatherData = data;
-        });
-
-        this.weatherService.getForecastByCity(this.city).subscribe(data => {
-          this.forecastData = data;  
-          console.log(this.forecastData);
-           
-        });
+        this.weatherService.getWeatherByCity(this.city).subscribe(
+          data => {
+            this.weatherData = data;
+          },
+          error => {
+            if (error.status === 404) {
+              this.isNotFound = true;
+            }
+          }
+        );
+  
+        this.weatherService.getForecastByCity(this.city).subscribe(
+          data => {
+            this.forecastData = data;
+          },
+          error => {
+            if (error.status === 404) {
+              this.isNotFound = true; 
+            }
+          }
+        );
       }
-      
     });
   }
+  
 
 
   convertUnixTime(unixTime: number, timezoneOffset: number): string { //Calculo para transformar el sunrise y sunset en información legible

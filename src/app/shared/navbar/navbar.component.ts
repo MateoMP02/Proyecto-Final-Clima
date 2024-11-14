@@ -20,7 +20,7 @@ export class NavbarComponent {
     // Escuchar eventos de navegación para actualizar la visibilidad del componente de búsqueda
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // Ocultar el componente de búsqueda solo si la ruta es `/search`
+
         this.hideLocationSearch = ['/login', '/register', '/search'].some(route => event.url.includes(route));
       }
     });

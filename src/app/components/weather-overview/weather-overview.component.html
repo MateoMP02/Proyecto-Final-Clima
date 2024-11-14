@@ -2,6 +2,10 @@
     <div class="left-side">
       <h1>Current Weather</h1>
 
+      <div *ngIf="isNotFound">
+        <h1>Location does not exist.</h1>
+      </div>
+
       <div *ngIf="weatherData">
         <h2>{{ weatherData.name ? 'Weather in ' + weatherData.name : 'The name of the location is unknown' }}</h2>
         <p><strong>Timezone:</strong> {{ weatherData.timezone }}</p>
@@ -33,3 +37,4 @@
       </div>
       </div>
   
+
