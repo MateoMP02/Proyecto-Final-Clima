@@ -24,7 +24,7 @@ export class WeatherOverviewComponent implements OnInit {
   unidadSeleccionadaViento: string = 'm/s';
   route = inject(ActivatedRoute);
   weatherService = inject(WeatherService);
-  
+  private marker: L.Marker | undefined; 
   ngOnInit() {
     this.route.queryParams.subscribe(params => { //tuve que hacerlo con queryparams porque me tiraba un error en +params
       this.city = params['city'] || null;
@@ -59,7 +59,16 @@ export class WeatherOverviewComponent implements OnInit {
   }
   private initMap(lat: number, lon: number) {
     if (this.map) {
-      this.map.setView([lat, lon], 10); // Actualiza la vista si el mapa ya está creado
+      this.map.setView([lat, lon], 10);
+      this.map.invalidateSize(); // Actualiza la vista si el mapa ya está creado
+      if (this.marker) {
+        this.marker.setLatLng([lat, lon]);
+      } else {
+        // Si el marcador no existe, créalo
+        this.marker = L.marker([lat, lon]).addTo(this.map)
+          .bindPopup('Ubicación seleccionada')
+          .openPopup();
+      }
     } else {
       ///capa del mapa 
       this.map = L.map('map').setView([lat, lon], 10);
