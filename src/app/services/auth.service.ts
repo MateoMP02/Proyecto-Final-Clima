@@ -61,7 +61,22 @@ export class AuthService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
   }
-
+  deleteUser(user: User): Observable<void> {
+    const url = `${this.url}/${user.id}`; // Construye la URL específica para el usuario
+    return this.http.delete<void>(url).pipe(
+      map(() => {
+        // Si el usuario eliminado es el actualmente autenticado, limpia el localStorage
+        const currentUser = this.getCurrentUser();
+        if (currentUser && currentUser.id === user.id) {
+          this.logout();
+        }
+      }),
+      catchError(error => {
+        console.error('Error deleting user', error);
+        return throwError(() => new Error('Error deleting user'));
+      })
+    );
+  }
   logout(): void {
     localStorage.removeItem('currentUser');
   }
