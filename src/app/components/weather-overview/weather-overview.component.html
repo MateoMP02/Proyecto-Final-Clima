@@ -18,8 +18,14 @@
         <p><strong>Sunrise:</strong> {{ convertUnixTime(weatherData.sys.sunrise, weatherData.timezone) }}</p>
         <p><strong>Sunset:</strong> {{ convertUnixTime(weatherData.sys.sunset, weatherData.timezone) }}</p>
       </div>
-
-      <div id="map" style="height: 400px; margin-top: 20px;"></div>
+      <div>
+        <h3>Map of {{weatherData.name}}</h3>
+        <div id="map" style="height: 400px; margin-top: 20px;"></div>
+      </div>
+     
+      
+        
+      </div>
         
       <div *ngIf="forecastData">
         <h2>Forecast</h2>

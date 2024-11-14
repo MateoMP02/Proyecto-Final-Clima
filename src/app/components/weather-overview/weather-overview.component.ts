@@ -37,6 +37,7 @@ export class WeatherOverviewComponent implements OnInit {
 
         this.weatherService.getForecastByCoordinates(this.lat, this.lon).subscribe(data => {
           this.forecastData = data;
+          this.initMap(this.lat!, this.lon!);
         });
       } else if (this.city) {
         this.weatherService.getWeatherByCity(this.city).subscribe(data => {
@@ -59,8 +60,8 @@ export class WeatherOverviewComponent implements OnInit {
     if (this.map) {
       this.map.setView([lat, lon], 10); // Actualiza la vista si el mapa ya está creado
     } else {
+      ///capa del mapa 
       this.map = L.map('map').setView([lat, lon], 10);
-      
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
       }).addTo(this.map);

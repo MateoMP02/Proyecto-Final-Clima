@@ -3,10 +3,13 @@
       <!-- Formulario de búsqueda de ciudad -->
       <form [formGroup]="searchCityBar" (ngSubmit)="onSubmit()" class="city-form">
         <input formControlName="city" placeholder="Select the city" (keyup.enter)="onSubmit()" />
+        <button>Search</button>
         <button type="button" (click)="toggleInputs()" class="toggle-button">
           {{ inputsVisible ? 'Hide Inputs' : 'Show Inputs' }}
+      
         </button>
-  
+        
+        
         <!-- Inputs de latitud y longitud alineados a la derecha -->
         <div *ngIf="inputsVisible" class="lat-lon-fields">
           <form [formGroup]="searchLatLonBar" (ngSubmit)="onSubmitLatLon()">
