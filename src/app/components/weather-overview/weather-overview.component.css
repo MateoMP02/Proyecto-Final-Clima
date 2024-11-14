@@ -63,7 +63,6 @@ header {
   clear: both;
 }
 
-/* Media Queries para mejorar la responsividad en dispositivos móviles */
 @media (max-width: 768px) {
   .weather-details p {
     width: 100%;
@@ -72,5 +71,18 @@ header {
   .div-container {
     width: 90%;
     padding: 15px;
+  }
+  .temperature-container {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos en una columna */
+    gap: 8px; /* Espacio entre cada párrafo */
+  }
+  
+  .temperature-container p {
+    margin: 0; /* Elimina márgenes predeterminados de los párrafos */
+  }
+  #map {
+    width: 100%;
+    height: 200px; /* Asegúrate de que tenga una altura suficiente */
   }
 }

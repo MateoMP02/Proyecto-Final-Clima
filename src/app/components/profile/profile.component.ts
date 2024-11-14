@@ -55,6 +55,29 @@ export class ProfileComponent implements OnInit{
       });
     }
   }
+  deleteUser() {
+    const confirmed = window.confirm('¿Estás seguro de que quieres eliminar este elemento?');
+    if(confirmed){
+      if (this.currentUser) {
+      this.authService.deleteUser(this.currentUser).subscribe({
+        next: () => {
+          alert('User deleted successfully.');
+          this.authService.logout(); // Elimina el usuario del almacenamiento local y cierra la sesión
+          this.currentUser = null;   // Limpia el usuario actual
+          // Aquí podrías redirigir al usuario a otra página, por ejemplo:
+          // this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.error('Error deleting user:', err);
+          alert('Failed to delete user.');
+        }
+      });
+    }
+    }else{
+      console.log("Cancelando la eliminacion de Usuario");
+    }
+    
+  }
 
   changeResidenceCity() {
     if (this.residenceCityForm.valid && this.currentUser) {

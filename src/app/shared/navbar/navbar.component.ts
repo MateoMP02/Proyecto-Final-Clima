@@ -7,7 +7,7 @@ import { LocationSearchComponent } from '../../components/location-search/locati
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink,CommonModule,LocationSearchComponent],
+  imports: [RouterLink,CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
