@@ -1,40 +1,50 @@
-<div class="content">
-    <div class="left-side">
-      <h1>Current Weather</h1>
 
-      <div *ngIf="isNotFound">
-        <h1>Location does not exist.</h1>
-      </div>
-
-      <div *ngIf="weatherData">
-        <h2>{{ weatherData.name ? 'Weather in ' + weatherData.name : 'The name of the location is unknown' }}</h2>
-        <p><strong>Timezone:</strong> {{ weatherData.timezone }}</p>
-        <p><strong>Temperature:</strong> {{ weatherData.main.temp }}°K</p>
-        <p><strong>Feels Like:</strong> {{ weatherData.main.feels_like }}°K</p>
-        <p><strong>Min Temperature:</strong> {{ weatherData.main.temp_min }}°K</p>
-        <p><strong>Max Temperature:</strong> {{ weatherData.main.temp_max }}°K</p>
-        <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
-        <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
-        <p><strong>Weather:</strong> {{ weatherData.weather[0].description }}</p>
-        <p><strong>Wind Speed:</strong> {{ weatherData.wind.speed }} m/s</p>
-        <p><strong>Cloudiness:</strong> {{ weatherData.clouds.all }}%</p>
-        <p><strong>Visibility:</strong> {{ weatherData.visibility }} meters</p>
-        <p><strong>Sunrise:</strong> {{ convertUnixTime(weatherData.sys.sunrise, weatherData.timezone) }}</p>
-        <p><strong>Sunset:</strong> {{ convertUnixTime(weatherData.sys.sunset, weatherData.timezone) }}</p>
-      </div>
-
-      
-        
-      <div *ngIf="forecastData">
-        <h2>Forecast</h2>
-        <div *ngFor="let forecast of forecastData.list">
-          <p><strong>Forecast Date:</strong> {{ formatForecastDate(forecast.dt_txt) }}</p>
-          <p><strong>Temperature:</strong> {{ forecast.main.temp }}°K</p>
-          <p><strong>Weather:</strong> {{ forecast.weather[0].description }}</p>
-          <p><strong>Wind Speed:</strong> {{ forecast.wind.speed }} m/s</p>
-          <p><strong>Cloudiness:</strong> {{ forecast.clouds.all }}%</p>
-        </div>
-      </div>
-      </div>
+<body>
+  <header class="headeer">
+    <h1>Current Weather</h1>
+  </header>
   
-
+  <div *ngIf="isNotFound">
+    <h1>La localización no existe.</h1>
+  </div>
+  
+  <main *ngIf="!isNotFound && weatherData"  class="div-container" aria-labelledby="current-weather">
+    <div class="cabeza">
+      <h2 id="current-weather">{{ weatherData.name ? 'Weather in ' + weatherData.name : 'Location unknown' }}</h2>
+      <p><strong>Timezone:</strong> {{ weatherData.timezone }}</p>
+    </div>
+  
+    <section class="weather-details" aria-labelledby="weather-info">
+      <h3 id="weather-info" class="visually-hidden">Weather Information</h3>
+      <p><strong>Temperature:</strong> {{ weatherData.main.temp }}°K</p>
+      <p><strong>Feels Like:</strong> {{ weatherData.main.feels_like }}°K</p>
+      <p><strong>Min Temperature:</strong> {{ weatherData.main.temp_min }}°K</p>
+      <p><strong>Max Temperature:</strong> {{ weatherData.main.temp_max }}°K</p>
+      <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
+      <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
+    </section>
+  
+    <section class="weather-details" aria-labelledby="additional-info">
+      <h3 id="additional-info" class="visually-hidden">Additional Weather Information</h3>
+      <p><strong>Weather:</strong> {{ weatherData.weather[0].description }}</p>
+      <p><strong>Wind Speed:</strong> {{ weatherData.wind.speed }} m/s</p>
+      <p><strong>Cloudiness:</strong> {{ weatherData.clouds.all }}%</p>
+      <p><strong>Visibility:</strong> {{ weatherData.visibility }} meters</p>
+      <p><strong>Sunrise:</strong> {{ convertUnixTime(weatherData.sys.sunrise, weatherData.timezone) }}</p>
+      <p><strong>Sunset:</strong> {{ convertUnixTime(weatherData.sys.sunset, weatherData.timezone) }}</p>
+    </section>
+  </main>
+  
+  <section *ngIf="forecastData" class="clearfix" aria-labelledby="forecast-header">
+    <header id="forecast-header" class="headeer">
+      <h2>Forecast</h2>
+    </header>
+    <div *ngFor="let forecast of forecastData" class="tdia">
+      <p><strong>Day:</strong> {{ forecast.date }}</p>
+      <p><strong>Temperature:</strong> {{ forecast.main.temp }}°K</p>
+      <p><strong>Weather:</strong> {{ forecast.weather[0].description }}</p>
+      <p><strong>Wind Speed:</strong> {{ forecast.wind.speed }} m/s</p>
+      <p><strong>Cloudiness:</strong> {{ forecast.clouds.all }}%</p>
+    </div>
+  </section>
+</body>

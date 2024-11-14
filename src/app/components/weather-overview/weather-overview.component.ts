@@ -46,7 +46,7 @@ export class WeatherOverviewComponent implements OnInit {
   
         this.weatherService.getForecastByCoordinates(this.lat, this.lon).subscribe(
           data => {
-            this.forecastData = data;
+            this.forecastData = this.getDailyForecast(data.list);
           },
           error => {
             if (error.status === 404) {
@@ -68,7 +68,7 @@ export class WeatherOverviewComponent implements OnInit {
   
         this.weatherService.getForecastByCity(this.city).subscribe(
           data => {
-            this.forecastData = data;
+            this.forecastData = this.getDailyForecast(data.list);
           },
           error => {
             if (error.status === 404) {
@@ -79,11 +79,22 @@ export class WeatherOverviewComponent implements OnInit {
       }
     });
   }
+
+  getDailyForecast(forecastList: any[]): any[] {
+    const dailyForecast = forecastList.reduce((acc, curr) => {
+      const date = new Date(curr.dt_txt).toLocaleDateString("en-US", { weekday: 'short', month: 'short', day: 'numeric' });
+      if (!acc.find((item: any) => item.date === date)) {
+        acc.push({ ...curr, date });
+      }
+      return acc;
+    }, []);
+    return dailyForecast;
+  }
   
 
 
   convertUnixTime(unixTime: number, timezoneOffset: number): string { //Calculo para transformar el sunrise y sunset en información legible
-    const date = new Date((unixTime + timezoneOffset) * 1000); 
+    const date = new Date((unixTime + timezoneOffset) * 1000);
     return new Intl.DateTimeFormat('en-US', {
       hour: '2-digit',
       minute: '2-digit',
@@ -94,17 +105,17 @@ export class WeatherOverviewComponent implements OnInit {
 
   formatForecastDate(dt_txt: string): string {
     const date = new Date(dt_txt);
-  
-    return new Intl.DateTimeFormat('en-US', {
-      weekday: 'short', 
-      year: 'numeric', 
-      month: 'short', 
-      day: 'numeric', 
-      hour: '2-digit', 
-      minute: '2-digit', 
-      hour12: true 
-    }).format(date);
-  } 
 
- 
+    return new Intl.DateTimeFormat('en-US', {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    }).format(date);
+  }
+
+
 }
