@@ -5,8 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './glossary.component.html',
-  styleUrl: './glossary.component.css'
+  styleUrls: ['./glossary.component.css']
 })
 export class GlossaryPageComponent {
-
 }

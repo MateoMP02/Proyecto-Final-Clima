@@ -5,8 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import { WeatherService } from './services/weather.service';
 import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { LocationSearchComponent } from "./components/location-search/location-search.component";
-import { GlossaryPageComponent } from './components/glossary/glossary.component';
-
+import { GlossaryPageComponent } from './pages/glossary-page/glossary-page.component';
 
 @Component({
   selector: 'app-root',
