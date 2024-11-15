@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { LocationSearchComponent } from '../../components/location-search/location-search.component';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +21,6 @@ export class NavbarComponent {
 
   logout(): void {
     this.authService.logout();
+    alert('You have successfully logged out.');
   }
-
-  
 }

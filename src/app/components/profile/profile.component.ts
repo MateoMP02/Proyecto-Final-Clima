@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
-import { User } from '../../../types/user';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../types/user';
 
 @Component({
   selector: 'app-profile',
@@ -62,10 +62,8 @@ export class ProfileComponent implements OnInit{
       this.authService.deleteUser(this.currentUser).subscribe({
         next: () => {
           alert('User deleted successfully.');
-          this.authService.logout(); // Elimina el usuario del almacenamiento local y cierra la sesión
-          this.currentUser = null;   // Limpia el usuario actual
-          // Aquí podrías redirigir al usuario a otra página, por ejemplo:
-          // this.router.navigate(['/login']);
+          this.authService.logout(); 
+          this.currentUser = null;   
         },
         error: (err) => {
           console.error('Error deleting user:', err);

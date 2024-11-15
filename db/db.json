@@ -44,6 +44,20 @@
       "username": "asdasd",
       "password": "asd123",
       "email": "asdasd@gmail.com",
+      "residenceCity": "la paz",
+      "searchHistory": [
+        "Lat: 12, Lon: 13",
+        "nazareth",
+        "Lat: 13, Lon: 15",
+        "la paz",
+        "brasil"
+      ]
+    },
+    {
+      "id": "5836",
+      "username": "asda",
+      "password": "asdasd123",
+      "email": "asd@gmail.com",
       "residenceCity": "nazareth",
       "searchHistory": []
     }

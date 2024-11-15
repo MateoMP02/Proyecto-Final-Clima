@@ -46,18 +46,18 @@
 }
 
 .home-link {
-    display: flex;                /* Usamos flexbox para alinear la imagen y el texto */
-    align-items: center;          /* Alineamos la imagen y el texto verticalmente */
-    text-decoration: none;        /* Eliminamos el subrayado del enlace */
-    color: inherit;               /* Mantenemos el color del texto como el valor predeterminado */
+    display: flex;                
+    align-items: center;          
+    text-decoration: none;       
+    color: inherit;               
   }
   
   .home-icon {
-    width: 24px;                  /* Ajustamos el tamaño de la imagen */
+    width: 24px;                  
     height: 24px;
-    margin-right: 8px;            /* Agregamos espacio entre la imagen y el texto */
+    margin-right: 8px;            
   }
   
   .home-link:hover {
-    color: #007bff;               /* Cambiamos el color al pasar el mouse, ejemplo con color azul */
+    color: #007bff;              
   }

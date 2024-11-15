@@ -80,7 +80,7 @@
 /* Campos de latitud y longitud */
 .lat-lon-fields {
     display: flex;
-    flex-direction: column; /* Apila los inputs y el botón en una columna */
+    flex-direction: column; 
     align-items: center;
     gap: 10px;
 }
