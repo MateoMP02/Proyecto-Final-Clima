@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { User } from '../../types/user';
+import { AuthService } from '../../../services/auth.service';
+import { User } from '../../../types/user';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 

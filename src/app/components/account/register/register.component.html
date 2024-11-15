@@ -1,38 +1,39 @@
-<form [formGroup]="registerForm" (ngSubmit)="register()">
-    <div>
-        <label for="username">Username:</label>
-        <input id="username" formControlName="username" placeholder="Enter your username" />
-        <div *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.touched || registerForm.get('username')?.dirty)">
-            <small *ngIf="registerForm.get('username')?.errors?.['required']">Username is required.</small>
-            <small *ngIf="registerForm.get('username')?.errors?.['minlength']">Username must be at least 4 characters long.</small>
-        </div>
+<h2>Register</h2>
+<form class="form-container" [formGroup]="registerForm" (ngSubmit)="register()">
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input id="username" formControlName="username" placeholder="Enter your username" />
+    <div class="error" *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.touched || registerForm.get('username')?.dirty)">
+      <small *ngIf="registerForm.get('username')?.errors?.['required']">Username is required.</small>
+      <small *ngIf="registerForm.get('username')?.errors?.['minlength']">Username must be at least 4 characters long.</small>
     </div>
+  </div>
 
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" formControlName="password" placeholder="Enter your password" />
-        <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
-            <small *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</small>
-            <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 4 characters long.</small>
-        </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password" placeholder="Enter your password" />
+    <div class="error" *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
+      <small *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</small>
+      <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 4 characters long.</small>
     </div>
+  </div>
 
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" formControlName="email" placeholder="Enter your email" />
-        <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
-            <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</small>
-            <small *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email address.</small>
-        </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" placeholder="Enter your email" />
+    <div class="error" *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
+      <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</small>
+      <small *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email address.</small>
     </div>
+  </div>
 
-    <div>
-        <label for="residenceCity">Residence City (optional):</label>
-        <input id="residenceCity" formControlName="residenceCity" placeholder="Enter your city" />
-        <div *ngIf="registerForm.get('residenceCity')?.invalid && (registerForm.get('residenceCity')?.touched || registerForm.get('residenceCity')?.dirty)">
-            <small *ngIf="registerForm.get('residenceCity')?.errors?.['minlength']">City name must be at least 3 characters long.</small>
-        </div>
+  <div class="form-group">
+    <label for="residenceCity">Residence City (optional):</label>
+    <input id="residenceCity" formControlName="residenceCity" placeholder="Enter your city" />
+    <div class="error" *ngIf="registerForm.get('residenceCity')?.invalid && (registerForm.get('residenceCity')?.touched || registerForm.get('residenceCity')?.dirty)">
+      <small *ngIf="registerForm.get('residenceCity')?.errors?.['minlength']">City name must be at least 3 characters long.</small>
     </div>
+  </div>
 
-    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  <button type="submit" [disabled]="registerForm.invalid">Register</button>
 </form>

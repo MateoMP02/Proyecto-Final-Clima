@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-weather-overview',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './weather-overview.component.html',
   styleUrl: './weather-overview.component.css'
 })
@@ -17,7 +17,7 @@ export class WeatherOverviewComponent implements OnInit {
   city: string | null = null;
   lat: number | null = null;
   lon: number | null = null;
- 
+
   isNotFound: boolean = false;
   dailyForecast: any[] = [];
   unidadSeleccionada: string = 'K';
@@ -31,8 +31,8 @@ export class WeatherOverviewComponent implements OnInit {
       this.city = params['city'] || null;
       this.lat = params['lat'] ? +params['lat'] : null;
       this.lon = params['lon'] ? +params['lon'] : null;
-      this.isNotFound = false; 
-      
+      this.isNotFound = false;
+
       if (this.lat !== null && this.lon !== null) {
         this.weatherService.getWeatherByCoordinates(this.lat, this.lon).subscribe(
           data => {
@@ -44,7 +44,7 @@ export class WeatherOverviewComponent implements OnInit {
             }
           }
         );
-  
+
         this.weatherService.getForecastByCoordinates(this.lat, this.lon).subscribe(
           data => {
             this.forecastData = this.getDailyForecast(data.list);
@@ -52,7 +52,7 @@ export class WeatherOverviewComponent implements OnInit {
           },
           error => {
             if (error.status === 404) {
-              this.isNotFound = true; 
+              this.isNotFound = true;
             }
           }
         );
@@ -70,14 +70,14 @@ export class WeatherOverviewComponent implements OnInit {
             }
           }
         );
-  
+
         this.weatherService.getForecastByCity(this.city).subscribe(
           data => {
             this.forecastData = this.getDailyForecast(data.list);
           },
           error => {
             if (error.status === 404) {
-              this.isNotFound = true; 
+              this.isNotFound = true;
             }
           }
         );
@@ -95,7 +95,7 @@ export class WeatherOverviewComponent implements OnInit {
     }, []);
     return dailyForecast;
   }
-  
+
 
 
   convertUnixTime(unixTime: number, timezoneOffset: number): string { //Calculo para transformar el sunrise y sunset en información legible
@@ -121,12 +121,12 @@ export class WeatherOverviewComponent implements OnInit {
       hour12: true
     }).format(date);
   }
-  
+
 
 
   //Funciones del mapa
 
-  private marker: L.Marker | undefined; 
+  private marker: L.Marker | undefined;
   private map: L.Map | null = null;
 
   private initMap(lat: number, lon: number) {
@@ -135,7 +135,7 @@ export class WeatherOverviewComponent implements OnInit {
       setTimeout(() => this.initMap(lat, lon), 100);
       return;
     }
-  
+
     if (this.map) {
       this.map.setView([lat, lon], 10);
       this.map.invalidateSize();
@@ -152,33 +152,56 @@ export class WeatherOverviewComponent implements OnInit {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
       }).addTo(this.map);
-  
+
       this.map.invalidateSize();
       this.marker = L.marker([lat, lon]).addTo(this.map)
         .bindPopup('Ubicación seleccionada')
         .openPopup();
     }
+
+    const weatherInfo = `
+      <h4>Weather in ${this.weatherData.name}</h4>
+      <p><strong>Temperature:</strong> ${this.getTempConvert(this.weatherData.main.temp)}</p>
+      <p><strong>Weather:</strong> ${this.weatherData.weather[0].description}</p>
+      <p><strong>Humidity:</strong> ${this.weatherData.main.humidity}%</p>
+      <p><strong>Wind Speed:</strong> ${this.getSpeedConvert(this.weatherData.wind.speed)}</p>
+    `;
+
+    // Asignar el contenido al popup del marcador
+    if (this.marker) {
+      this.marker.setPopupContent(weatherInfo);
+    }
   }
-  
-  getTempConvert(temp:number){
-    switch(this.unidadSeleccionada){
+
+  getTempConvert(temp: number) {
+    switch (this.unidadSeleccionada) {
       case 'C':
         return (temp - 273.15).toFixed(2) + ' °C';
       case 'F':
-        return ((temp - 273.15) * 9/5 + 32).toFixed(2) + ' °F';
+        return ((temp - 273.15) * 9 / 5 + 32).toFixed(2) + ' °F';
       default:
         return temp.toFixed(2) + ' °K';
     }
   }
-  getSpeedConvert(speed:number){
-    switch(this.unidadSeleccionadaViento){
+  getSpeedConvert(speed: number) {
+    switch (this.unidadSeleccionadaViento) {
       case 'm/s':
         return speed.toFixed(2) + 'm/s';
       case 'K/h':
         return (speed * 3.6).toFixed(2) + 'K/h';
-        default:
-          return speed.toFixed(2) + 'm/s';
+      default:
+        return speed.toFixed(2) + 'm/s';
     }
   }
 
+  //Traduce la timezone a un valor entendible
+  translateTimezone(offsetInSeconds: number): string {
+    const offsetInHours = offsetInSeconds / 3600;
+
+    const sign = offsetInHours >= 0 ? '+' : '-';
+
+    const absoluteOffset = Math.abs(offsetInHours);
+
+    return `UTC${sign}${absoluteOffset}`;
+  }
 }

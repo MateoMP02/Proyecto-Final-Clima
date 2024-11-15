@@ -1,25 +1,6 @@
 {
   "users": [
     {
-      "id": "c651",
-      "username": "asdasd",
-      "password": "asd123",
-      "email": "asd@gmail.com",
-      "residenceCity": "bolivia",
-      "searchHistory": [
-        "Lat: 12, Lon: 1",
-        "Lat: 11, Lon: 123",
-        "bolivia",
-        "bolivia",
-        "asdasd",
-        "asdasd",
-        "bolivia",
-        "bolivia",
-        "Buenos aires",
-        "Buenos aires"
-      ]
-    },
-    {
       "id": "62a2",
       "username": "asdasdasd",
       "password": "asdasdasdasd",
@@ -57,6 +38,14 @@
         "groelandia",
         "asd"
       ]
+    },
+    {
+      "id": "5142",
+      "username": "asdasd",
+      "password": "asd123",
+      "email": "asdasd@gmail.com",
+      "residenceCity": "nazareth",
+      "searchHistory": []
     }
   ]
 }

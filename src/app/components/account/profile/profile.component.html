@@ -1,6 +1,4 @@
-<h2>User Profile</h2>
-
-<div *ngIf="currentUser; else noUser">
+<div class="user-profile-container" *ngIf="currentUser; else noUser">
   <p><strong>Username:</strong> {{ currentUser.username }}</p>
   <p><strong>Email:</strong> {{ currentUser.email }}</p>
 
@@ -25,6 +23,7 @@
     </li>
   </ul>
   <button (click)="clearSearchHistory()">Clear search history</button>
+  
   <h4>Eliminar Usuario</h4>
   <button (click)="deleteUser()">Eliminar</button>
 </div>

@@ -11,7 +11,7 @@
   <main *ngIf="!isNotFound && weatherData"  class="div-container" aria-labelledby="current-weather">
     <div class="cabeza">
       <h2 id="current-weather">{{ weatherData.name ? 'Weather in ' + weatherData.name : 'Location unknown' }}</h2>
-      <p><strong>Timezone:</strong> {{ weatherData.timezone }}</p>
+      <p><strong>Timezone:</strong> {{ translateTimezone(weatherData.timezone) }}</p>
     </div>
     <div>
       <h3>Map of {{weatherData.name}}</h3>
@@ -65,7 +65,7 @@
       <p><strong>Day:</strong> {{ forecast.date }}</p>
       <p><strong>Temperature:</strong> {{ forecast.main.temp }}°K</p>
       <p><strong>Weather:</strong> {{ forecast.weather[0].description }}</p>
-      <p><strong>Wind Speed:</strong> {{ forecast.wind.speed }} m/s</p>
+      <p><strong>Wind Speed:</strong> {{ forecast.wind.speed }}</p>
       <p><strong>Cloudiness:</strong> {{ forecast.clouds.all }}%</p>
     </div>
   </section>
