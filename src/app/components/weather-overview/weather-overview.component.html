@@ -1,4 +1,3 @@
-
 <body>
   <header class="headeer">
     <h1>Current Weather</h1>
@@ -20,15 +19,18 @@
     <h1>La localización no existe.</h1>
   </div>
   
-  <main *ngIf="!isNotFound && weatherData"  class="div-container" aria-labelledby="current-weather">
+  <main *ngIf="!isNotFound && weatherData" class="div-container" aria-labelledby="current-weather">
     <div class="cabeza">
       <h2 id="current-weather">{{ weatherData.name ? 'Weather in ' + weatherData.name : 'Location unknown' }}</h2>
       <p><strong>Timezone:</strong> {{ translateTimezone(weatherData.timezone) }}</p>
     </div>
+
     <div>
       <h3>Map of {{weatherData.name}}</h3>
       <div id="map" style="height: 400px; width: 100%;"></div>
     </div>
+
+    <!-- Weather Information (Temperatures) -->
     <section class="weather-details" aria-labelledby="weather-info">
       <h3 id="weather-info" class="visually-hidden">Weather Information</h3>
       <div class="temperature-container">
@@ -36,27 +38,30 @@
         <p><strong>Feels Like:</strong> {{ getTempConvert(weatherData.main.feels_like) }}</p>
         <p><strong>Min Temperature:</strong> {{ getTempConvert(weatherData.main.temp_min) }}</p>
         <p><strong>Max Temperature:</strong> {{ getTempConvert(weatherData.main.temp_max) }}</p>
-    
       </div>
-      <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
-      <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
+      
+      <!-- Pressure and Humidity -->
+      <div class="pressure-humidity">
+        <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
+        <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
+      </div>
     </section>
   
+    <!-- Additional Weather Information -->
     <section class="weather-details" aria-labelledby="additional-info">
       <h3 id="additional-info" class="visually-hidden">Additional Weather Information</h3>
-      <p><strong>Weather:</strong> {{ weatherData.weather[0].description }}</p>
-      <div class="speed-container">
+      <div class="additional-info">
+        <p><strong>Weather:</strong> {{ weatherData.weather[0].description }}</p>
         <p><strong>Wind Speed:</strong> {{ getSpeedConvert(weatherData.wind.speed) }}</p>
-    
+        <p><strong>Cloudiness:</strong> {{ weatherData.clouds.all }}%</p>
+        <p><strong>Visibility:</strong> {{ weatherData.visibility }} meters</p>
+        <p><strong>Sunrise:</strong> {{ convertUnixTime(weatherData.sys.sunrise, weatherData.timezone) }}</p>
+        <p><strong>Sunset:</strong> {{ convertUnixTime(weatherData.sys.sunset, weatherData.timezone) }}</p>
       </div>
-      <p><strong>Cloudiness:</strong> {{ weatherData.clouds.all }}%</p>
-      <p><strong>Visibility:</strong> {{ weatherData.visibility }} meters</p>
-      <p><strong>Sunrise:</strong> {{ convertUnixTime(weatherData.sys.sunrise, weatherData.timezone) }}</p>
-      <p><strong>Sunset:</strong> {{ convertUnixTime(weatherData.sys.sunset, weatherData.timezone) }}</p>
     </section>
-    
   </main>
-  
+
+  <!-- Forecast Section -->
   <section *ngIf="forecastData && !isNotFound && weatherData" class="clearfix" aria-labelledby="forecast-header">
     <header id="forecast-header" class="headeer">
       <h2>Forecast</h2>
@@ -65,7 +70,7 @@
       <p><strong>Day:</strong> {{ forecast.date }}</p>
       <p><strong>Temperature:</strong> {{ getTempConvert(forecast.main.temp) }}</p>
       <p><strong>Weather:</strong> {{ forecast.weather[0].description }}</p>
-      <p><strong>Wind Speed:</strong> {{getSpeedConvert( forecast.wind.speed )}}</p>
+      <p><strong>Wind Speed:</strong> {{ getSpeedConvert(forecast.wind.speed) }}</p>
       <p><strong>Cloudiness:</strong> {{ forecast.clouds.all }}%</p>
     </div>
   </section>

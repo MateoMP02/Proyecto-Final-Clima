@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit{
     }
   }
   deleteUser() {
-    const confirmed = window.confirm('¿Estás seguro de que quieres eliminar este elemento?');
+    const confirmed = window.confirm("Are you sure you want to delete your account? This action is permanent and cannot be undone.");
     if(confirmed){
       if (this.currentUser) {
       this.authService.deleteUser(this.currentUser).subscribe({
@@ -71,8 +71,6 @@ export class ProfileComponent implements OnInit{
         }
       });
     }
-    }else{
-      console.log("Cancelando la eliminacion de Usuario");
     }
     
   }

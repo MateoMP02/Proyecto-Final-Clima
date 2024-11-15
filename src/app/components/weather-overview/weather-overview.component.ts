@@ -1,9 +1,10 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
 import { CommonModule } from '@angular/common';
 import * as L from 'leaflet';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-weather-overview',
   standalone: true,
@@ -24,6 +25,7 @@ export class WeatherOverviewComponent implements OnInit {
   unidadSeleccionadaViento: string = 'm/s';
   route = inject(ActivatedRoute);
   weatherService = inject(WeatherService);
+  router = inject(Router);
 
 
   ngOnInit() {
@@ -63,6 +65,7 @@ export class WeatherOverviewComponent implements OnInit {
             this.lat = data.coord.lat;
             this.lon = data.coord.lon;
             this.initMap(this.lat!, this.lon!);
+            
           },
           error => {
             if (error.status === 404) {
@@ -95,7 +98,6 @@ export class WeatherOverviewComponent implements OnInit {
     }, []);
     return dailyForecast;
   }
-
 
 
   convertUnixTime(unixTime: number, timezoneOffset: number): string { //Calculo para transformar el sunrise y sunset en información legible

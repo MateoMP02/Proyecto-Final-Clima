@@ -1,64 +1,27 @@
 {
   "users": [
     {
-      "id": "62a2",
-      "username": "asdasdasd",
-      "password": "asdasdasdasd",
-      "email": "pepe@gmail.com",
-      "residenceCity": "brasilia",
-      "searchHistory": [
-        "bolivia"
-      ]
+      "id": "83c9",
+      "username": "Juanceto22",
+      "password": "juanceto123",
+      "email": "juanceto22@gmail.com",
+      "residenceCity": "Nazareth",
+      "searchHistory": []
     },
     {
-      "id": "6469",
-      "username": "asdasd",
-      "password": "asdasd",
-      "email": "asd123@gmail.com",
+      "id": "3a21",
+      "username": "franco123",
+      "password": "franco123",
+      "email": "franco123@gmail.com",
       "residenceCity": "",
       "searchHistory": []
     },
     {
-      "id": "30db",
-      "username": "asdasd",
-      "password": "asdasdasd",
-      "email": "123123@gmail.com",
-      "residenceCity": "",
-      "searchHistory": []
-    },
-    {
-      "id": "69bd",
-      "username": "asdasd123",
-      "password": "asdadasd",
-      "email": "pepepe@gmail.com",
-      "residenceCity": "brasil",
-      "searchHistory": [
-        "cuba",
-        "asd",
-        "groelandia",
-        "asd"
-      ]
-    },
-    {
-      "id": "5142",
-      "username": "asdasd",
-      "password": "asd123",
-      "email": "asdasd@gmail.com",
-      "residenceCity": "la paz",
-      "searchHistory": [
-        "Lat: 12, Lon: 13",
-        "nazareth",
-        "Lat: 13, Lon: 15",
-        "la paz",
-        "brasil"
-      ]
-    },
-    {
-      "id": "5836",
-      "username": "asda",
-      "password": "asdasd123",
-      "email": "asd@gmail.com",
-      "residenceCity": "nazareth",
+      "id": "ef8e",
+      "username": "manuel22",
+      "password": "manuel123",
+      "email": "manuel@hotmail.com",
+      "residenceCity": "Mar del plata",
       "searchHistory": []
     }
   ]

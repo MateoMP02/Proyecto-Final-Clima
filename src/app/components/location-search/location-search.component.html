@@ -1,6 +1,5 @@
 <body >
   
-  <!-- Título Grande en la pantalla con imagen circular de fondo -->
   <div class="title-container">
     
     <h1 class="big-title">Bienvenido a ClimateNow</h1>
@@ -15,11 +14,11 @@
           <input formControlName="city" placeholder="Select the city" (keyup.enter)="onSubmit()" class="search-input" />
         </div>
         <button type="submit" class="search-button">Search</button>
+
         <button type="button" (click)="toggleInputs()" class="toggle-button">
           {{ inputsVisible ? 'Hide Inputs' : 'Show Inputs' }}
         </button>
   
-        <!-- Inputs de latitud y longitud alineados a la derecha -->
         <div *ngIf="inputsVisible" class="lat-lon-fields">
           <form [formGroup]="searchLatLonBar" (ngSubmit)="onSubmitLatLon()">
             <input type="text" placeholder="Latitude" formControlName="lat" (keyup.enter)="onSubmitLatLon()" />

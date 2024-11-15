@@ -1,4 +1,3 @@
-
 body {
   background-color: #f0f2f5;
   font-family: Arial, sans-serif;
@@ -20,7 +19,7 @@ header {
   border-radius: 10px;
   color: #333;
   padding: 20px;
-  max-width: 600px;
+  max-width: 800px; /* Aumenta un poco el ancho */
   margin: 20px auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -30,26 +29,42 @@ header {
   margin-bottom: 20px;
 }
 
-.weather-details {
+.weather-details .temperature-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  gap: 20px; /* Espacio entre los elementos */
 }
 
-.weather-details p {
-  width: 45%;
+.weather-details .temperature-container p {
+  width: 45%; /* Ajuste de tamaño para que no se desborden */
   background-color: #f8f9fa;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  text-align: center; /* Centra el texto */
+}
+
+.weather-details .info-container {
+  display: flex;
+  flex-direction: column; /* Para mostrar las propiedades de forma vertical */
+  gap: 15px;
+}
+
+.weather-details .info-container p {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .tdia {
   background-color: #e3e7ec;
   border-radius: 8px;
   padding: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: background-color 0.3s ease;
@@ -63,33 +78,56 @@ header {
   clear: both;
 }
 
-@media (max-width: 768px) {
-  .weather-details p {
-    width: 100%;
-  }
-
-  .div-container {
-    width: 90%;
-    padding: 15px;
-  }
-  .temperature-container {
-    display: flex;
-    flex-direction: column; 
-    gap: 8px;
-  }
-  
-  .temperature-container p {
-    margin: 0; 
-  }
-  #map {
-    width: 100%;
-    height: 200px; 
-  }
-}
-
 .select-container {
   top: 10px;
   right: 10px;
   display: inline-block;
 }
 
+h1, h2 {
+  text-align: center;
+  font-size: 1.6rem; /* Ajuste el tamaño de la fuente para una mejor visualización */
+  margin-bottom: 20px;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+  border-radius: 8px; /* Redondea los bordes del mapa */
+  margin-bottom: 20px;
+}
+
+.weather-details section {
+  margin-bottom: 30px; /* Espacio entre las secciones */
+}
+
+.weather-details .pressure-humidity {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Espacio entre los dos elementos */
+}
+
+.weather-details .pressure-humidity p {
+  width: 45%; /* Ajuste de tamaño para no desbordarse */
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.weather-details .additional-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.weather-details .additional-info p {
+  width: 45%;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}

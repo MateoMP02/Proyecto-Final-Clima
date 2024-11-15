@@ -1,0 +1,13 @@
+/*.home-page {
+    height: 100vh;
+    background-image: url('/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  } no funciona con 100vh si con 40vh*/
+  

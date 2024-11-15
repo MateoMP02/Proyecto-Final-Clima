@@ -1,0 +1,33 @@
+
+.app-container {
+    min-height: 100vh;  
+    position: relative; 
+  }
+  
+  router-outlet {
+    padding-bottom: 60px; 
+  }
+  
+
+  app-footer {
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  app-footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  app-footer a:hover {
+    text-decoration: underline;
+  }
+  
+  

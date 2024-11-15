@@ -1,9 +1,14 @@
 <nav class="navbar">
-  <a *ngIf="!isLoggedIn()" routerLink="/login">Login</a>
-  <a *ngIf="!isLoggedIn()" routerLink="/register">Register</a>
-  <a *ngIf="isLoggedIn()" routerLink="/login" (click)="logout()">Logout</a>
-  <a *ngIf="isLoggedIn()" routerLink="/profile">Profile</a>
-  <a routerLink="/search">(imagen) home</a>
+  <div class="navbar-left">
+    <a *ngIf="!isLoggedIn()" routerLink="/login">Login</a>
+    <a *ngIf="!isLoggedIn()" routerLink="/register">Register</a>
+    <a *ngIf="isLoggedIn()" routerLink="/login" (click)="logout()">Logout</a>
+    <a *ngIf="isLoggedIn()" routerLink="/profile">Profile</a>
+  </div>
 
-
+  <!-- Enlace Home centrado -->
+  <a routerLink="/search" class="home-link">
+    <img src="/logo.png" alt="Home" class="home-icon">
+    Home
+  </a>
 </nav>
