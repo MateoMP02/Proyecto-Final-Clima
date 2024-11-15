@@ -1,3 +1,7 @@
+body{
+    background: transparent ;
+}
+
 .main {
     display: flex;
     justify-content: center;
@@ -91,6 +95,7 @@
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin: 10px;
 }
 
 .lat-lon-fields button {

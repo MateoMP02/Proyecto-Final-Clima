@@ -1,4 +1,4 @@
-<h2>Login</h2>
+<h1>Login</h1>
 <form class="form-container" [formGroup]="loginForm" (ngSubmit)="login()">
   <div class="form-group">
     <label for="username">Username:</label>
@@ -21,3 +21,4 @@
   <button type="submit" [disabled]="loginForm.invalid">Login</button>
   <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 </form>
+

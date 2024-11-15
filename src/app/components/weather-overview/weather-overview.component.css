@@ -82,6 +82,15 @@ header {
   top: 10px;
   right: 10px;
   display: inline-block;
+  border-radius: 4%;
+  
+}
+.select-container select, option{ 
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin: 10px;
 }
 
 h1, h2 {
