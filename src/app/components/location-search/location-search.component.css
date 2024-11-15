@@ -2,24 +2,136 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-  }
+}
 
-  .form-container {
+/* Contenedor del formulario */
+.form-container {
     display: flex;
     flex-direction: column;
-  }
-
-  .city-form {
-    display: flex;
     align-items: center;
-    gap: 10px; /* Espaciado entre elementos */
-  }
+}
 
-  .lat-lon-fields {
+/* Estilo de los inputs */
+.form-container input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Botones */
+.form-container button {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Formulario de la ciudad */
+.city-form {
     display: flex;
-    gap: 10px; /* Espaciado entre los inputs de latitud y longitud */
-  }
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
 
-  .toggle-button {
-    white-space: nowrap; /* Evita que el texto se divida */
-  }
+/* Estilo de la barra de búsqueda */
+.search-form {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 80%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Botones de búsqueda y alternar */
+.search-button {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.toggle-button {
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.toggle-button:hover {
+    background-color: #218838;
+}
+
+/* Campos de latitud y longitud */
+.lat-lon-fields {
+    display: flex;
+    flex-direction: column; /* Apila los inputs y el botón en una columna */
+    align-items: center;
+    gap: 10px;
+}
+
+.lat-lon-fields input {
+    width: 180px;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.lat-lon-fields button {
+    width: 120px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.lat-lon-fields button:hover {
+    background-color: #0056b3;
+}
+
+/* Mensajes de error */
+small {
+    color: red;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Contenedor del título */
+.title-container {
+    position: relative;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.big-title {
+    font-size: 3rem;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap');

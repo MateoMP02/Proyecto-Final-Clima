@@ -1,9 +1,20 @@
-<main class="main">
+<body >
+  
+  <!-- Título Grande en la pantalla con imagen circular de fondo -->
+  <div class="title-container">
+    
+    <h1 class="big-title">Bienvenido a ClimateNow</h1>
+
+  </div>
+  
+  <main class="main">
     <div class="form-container">
       <!-- Formulario de búsqueda de ciudad -->
       <form [formGroup]="searchCityBar" (ngSubmit)="onSubmit()" class="city-form">
-        <input formControlName="city" placeholder="Select the city" (keyup.enter)="onSubmit()" />
-        <button>Search</button>
+        <div class="search-form">
+          <input formControlName="city" placeholder="Select the city" (keyup.enter)="onSubmit()" class="search-input" />
+        </div>
+        <button type="submit" class="search-button">Search</button>
         <button type="button" (click)="toggleInputs()" class="toggle-button">
           {{ inputsVisible ? 'Hide Inputs' : 'Show Inputs' }}
         </button>
@@ -13,11 +24,12 @@
           <form [formGroup]="searchLatLonBar" (ngSubmit)="onSubmitLatLon()">
             <input type="text" placeholder="Latitude" formControlName="lat" (keyup.enter)="onSubmitLatLon()" />
             <input type="text" placeholder="Longitude" formControlName="lon" (keyup.enter)="onSubmitLatLon()" />
+            <button class="search-button">Search</button>
           </form>
         </div>
       </form>
-  
-     
+
+      <!-- Mensajes de error -->
       <div *ngIf="inputsVisible">
         <div *ngIf="searchLatLonBar.get('lat')?.invalid && (searchLatLonBar.get('lat')?.touched || searchLatLonBar.get('lat')?.dirty)">
           <small *ngIf="searchLatLonBar.get('lat')?.errors?.['required']">Latitude is required</small>
@@ -30,3 +42,4 @@
       </div>
     </div>
   </main>
+</body>
