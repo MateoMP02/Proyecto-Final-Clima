@@ -23,6 +23,14 @@
       "email": "manuel@hotmail.com",
       "residenceCity": "Mar del plata",
       "searchHistory": []
+    },
+    {
+      "id": "7366",
+      "username": "asd123",
+      "password": "asd123",
+      "email": "asd@gmail.com",
+      "residenceCity": "",
+      "searchHistory": []
     }
   ]
 }
