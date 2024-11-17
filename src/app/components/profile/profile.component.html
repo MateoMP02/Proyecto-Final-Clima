@@ -26,8 +26,33 @@
   
   <h4>Delete account</h4>
   <button (click)="deleteUser()">Delete</button>
+  
 </div>
+<div class="map-weather-container">
+  <!-- Map Section -->
+  <div class="map-section">
+    <h3 class="nameMap">Map of {{ currentUser?.residenceCity }}</h3>
+    <div id="map"></div>
+  </div>
 
+  <!-- Weather Details Section -->
+  <div class="weather-section">
+    <h4>Weather in {{ currentUser?.residenceCity }}</h4>
+    <section class="weather-details" aria-labelledby="weather-info">
+      <h3 id="weather-info" class="visually-hidden">Weather Information</h3>
+      <div class="temperature-container">
+        <p><strong>Temperature:</strong> {{ weatherData.main.temp }}</p>
+        <p><strong>Feels Like:</strong> {{ weatherData.main.feels_like }}</p>
+        <p><strong>Min Temperature:</strong> {{ weatherData.main.temp_min }}</p>
+        <p><strong>Max Temperature:</strong> {{ weatherData.main.temp_max }}</p>
+      </div>
+      <div class="pressure-humidity">
+        <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
+        <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
+      </div>
+    </section>
+  </div>
+</div>
 <ng-template #noUser>
   <p>No user is logged in. Please log in to see your profile.</p>
 </ng-template>
