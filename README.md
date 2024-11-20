@@ -7,11 +7,11 @@
 ### Integrantes del Proyecto
 Este proyecto fue desarrollado por los siguientes miembros:
 
--Mateo Martínez Prieto
--Sedares Otero Luca Agustín
--Hernán Cerillano
--Tomás Denk
--Ezequiel García
+- Mateo Martínez Prieto
+- Sedares Otero Luca Agustín
+- Hernán Cerillano
+- Tomás Denk
+- Ezequiel García
 
 ## Descripción
 
