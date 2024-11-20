@@ -4,6 +4,15 @@
 
 **Repositorio**: [Proyecto ClimateNow en GitHub](https://github.com/MateoMP02/Proyecto-Final-Clima.git)
 
+### Integrantes del Proyecto
+Este proyecto fue desarrollado por los siguientes miembros:
+
+Mateo Martínez Prieto
+Sedares Otero Luca Agustín
+Hernán Cerillano
+Tomás Denk
+Ezequiel García
+
 ## Descripción
 
 **ClimateNow** es una plataforma que proporciona los siguientes servicios:
