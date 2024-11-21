@@ -1,3 +1,4 @@
+/* Estilo del cuerpo */
 body {
   background-color: #f0f2f5;
   font-family: Arial, sans-serif;
@@ -6,6 +7,7 @@ body {
   padding: 0;
 }
 
+/* Estilo del encabezado */
 header {
   background-color: chocolate;
   color: #fff;
@@ -14,21 +16,24 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Contenedor principal con fondo blanco */
 .div-container {
   background-color: #fff;
   border-radius: 10px;
   color: #333;
   padding: 20px;
-  max-width: 800px; /* Aumenta un poco el ancho */
+  max-width: 800px; /* Aumenta el ancho del contenedor */
   margin: 20px auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilo para el encabezado dentro del contenedor */
 .cabeza {
   text-align: center;
   margin-bottom: 20px;
 }
 
+/* Contenedor de temperatura */
 .weather-details .temperature-container {
   display: flex;
   flex-wrap: wrap;
@@ -36,8 +41,9 @@ header {
   gap: 20px; /* Espacio entre los elementos */
 }
 
+/* Estilo para cada parámetro de temperatura */
 .weather-details .temperature-container p {
-  width: 45%; /* Ajuste de tamaño para que no se desborden */
+  width: 45%; /* Ajusta el tamaño para evitar desbordes */
   background-color: #f8f9fa;
   padding: 10px;
   border-radius: 8px;
@@ -46,12 +52,14 @@ header {
   text-align: center; /* Centra el texto */
 }
 
+/* Contenedor de información adicional (presión, humedad, etc.) */
 .weather-details .info-container {
   display: flex;
-  flex-direction: column; /* Para mostrar las propiedades de forma vertical */
+  flex-direction: column; /* Muestra las propiedades de forma vertical */
   gap: 15px;
 }
 
+/* Estilo de los párrafos dentro del contenedor de información adicional */
 .weather-details .info-container p {
   background-color: #f8f9fa;
   padding: 10px;
@@ -60,6 +68,7 @@ header {
   text-align: center;
 }
 
+/* Estilo del contenedor de la tarjeta del día */
 .tdia {
   background-color: #e3e7ec;
   border-radius: 8px;
@@ -70,22 +79,26 @@ header {
   transition: background-color 0.3s ease;
 }
 
+/* Efecto de hover en la tarjeta del día */
 .tdia:hover {
   background-color: #d1d8e0;
 }
 
+/* Estilo para limpiar flotantes */
 .clearfix {
   clear: both;
 }
 
+/* Estilo para el contenedor de selección */
 .select-container {
   top: 10px;
   right: 10px;
   display: inline-block;
   border-radius: 4%;
-  
 }
-.select-container select, option{ 
+
+/* Estilo para el selector de opción */
+.select-container select, option {
   background-color: #f8f9fa;
   font-family: Arial, sans-serif;
   border-radius: 10px;
@@ -93,12 +106,14 @@ header {
   margin: 10px;
 }
 
+/* Estilo para los encabezados h1 y h2 */
 h1, h2 {
   text-align: center;
   font-size: 1.6rem; /* Ajuste el tamaño de la fuente para una mejor visualización */
   margin-bottom: 20px;
 }
 
+/* Estilo para el mapa */
 #map {
   height: 300px;
   width: 100%;
@@ -106,18 +121,21 @@ h1, h2 {
   margin-bottom: 20px;
 }
 
+/* Espacio entre las secciones de detalles climáticos */
 .weather-details section {
   margin-bottom: 30px; /* Espacio entre las secciones */
 }
 
+/* Estilo para la sección de presión y humedad */
 .weather-details .pressure-humidity {
   display: flex;
   justify-content: space-between;
   gap: 20px; /* Espacio entre los dos elementos */
 }
 
+/* Estilo para los párrafos de presión y humedad */
 .weather-details .pressure-humidity p {
-  width: 45%; /* Ajuste de tamaño para no desbordarse */
+  width: 45%; /* Ajuste de tamaño para evitar desbordes */
   background-color: #f8f9fa;
   padding: 10px;
   border-radius: 8px;
@@ -125,6 +143,7 @@ h1, h2 {
   text-align: center;
 }
 
+/* Contenedor para la información adicional */
 .weather-details .additional-info {
   display: flex;
   flex-wrap: wrap;
@@ -132,6 +151,7 @@ h1, h2 {
   gap: 20px;
 }
 
+/* Estilo de los párrafos de la información adicional */
 .weather-details .additional-info p {
   width: 45%;
   background-color: #f8f9fa;

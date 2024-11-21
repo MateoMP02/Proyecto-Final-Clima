@@ -1,3 +1,9 @@
 <div class="home-page">
+  <!-- Componente de búsqueda -->
   <app-location-search></app-location-search>
+
+  <!-- Mostrar el mapa solo si el usuario está logueado y tiene residenceCity -->
+  <div class="residence-map-wrapper" *ngIf="currentUser?.residenceCity">
+    <app-residence-map></app-residence-map>
+  </div>
 </div>

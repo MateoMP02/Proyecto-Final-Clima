@@ -1,19 +1,20 @@
-
+/* Estilo para el contenedor principal del pie de página */
 .footer {
-    background-color: #333; 
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: auto; 
-  }
-  
-  .footer a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .footer a:hover {
-    text-decoration: underline;
-  }
-  
+  background-color: #333; 
+  color: white; 
+  text-align: center; 
+  padding: 10px; 
+  margin-top: auto; 
+}
+
+/* Estilo para los enlaces dentro del pie de página */
+.footer a {
+  color: #fff; 
+  text-decoration: none; 
+  font-weight: bold; 
+}
+
+/* Estilo para los enlaces cuando el usuario pasa el mouse por encima */
+.footer a:hover {
+  text-decoration: underline; 
+}

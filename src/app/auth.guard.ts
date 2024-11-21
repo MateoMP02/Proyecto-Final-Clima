@@ -3,14 +3,15 @@ import { AuthService } from './services/auth.service';
 import { inject } from '@angular/core';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const authService = inject(AuthService);  
-  const router = inject(Router);  
+  const authService = inject(AuthService);
+  const router = inject(Router);
 
-  //Si no esta logeado lo envia a login
+  // Verifica si el usuario está logeado
   if (authService.isLoggedIn()) {
-    return true;  
+    return true;  // Permite el acceso
   } else {
-    router.navigate(['/login']);  
-    return false;  
+    router.navigate(['/login']);  // Redirige al login si no está logeado
+    return false;  // Bloquea el acceso
   }
+
 };

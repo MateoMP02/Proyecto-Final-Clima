@@ -1,33 +1,34 @@
-
+/* Estilos para el contenedor principal de la aplicación */
 .app-container {
-    min-height: 100vh;  
-    position: relative; 
-  }
-  
-  router-outlet {
-    padding-bottom: 60px; 
-  }
-  
+  min-height: 100vh;  
+  position: relative; 
+}
 
-  app-footer {
-    position: absolute;
-    bottom: 0; 
-    left: 0;
-    right: 0;
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-  }
-  
-  app-footer a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  app-footer a:hover {
-    text-decoration: underline;
-  }
-  
-  
+/* Ajusta el padding en el router outlet */
+router-outlet {
+  padding-bottom: 60px; 
+}
+
+/* Estilos para el pie de página */
+app-footer {
+  position: absolute;
+  bottom: 0; 
+  left: 0;
+  right: 0;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Estilos para los enlaces en el pie de página */
+app-footer a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Estilos para el hover de los enlaces */
+app-footer a:hover {
+  text-decoration: underline;
+}

@@ -1,7 +1,9 @@
-body{
-    background: transparent ;
+/* Estilo del cuerpo */
+body {
+    background: transparent;
 }
 
+/* Contenedor principal */
 .main {
     display: flex;
     justify-content: center;
@@ -15,20 +17,20 @@ body{
     align-items: center;
 }
 
-/* Estilo de los inputs */
+/* Estilo de los inputs dentro del contenedor */
 .form-container input {
     width: 100%;
     margin-bottom: 10px;
 }
 
-/* Botones */
+/* Estilo para los botones dentro del formulario */
 .form-container button {
     width: 200px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-/* Formulario de la ciudad */
+/* Estilo para el formulario de la ciudad */
 .city-form {
     display: flex;
     flex-direction: column;
@@ -37,11 +39,12 @@ body{
     max-width: 600px;
 }
 
-/* Estilo de la barra de búsqueda */
+/* Estilo para la barra de búsqueda */
 .search-form {
     margin-bottom: 20px;
 }
 
+/* Estilo para la barra de búsqueda */
 .search-input {
     width: 80%;
     padding: 12px;
@@ -51,7 +54,7 @@ body{
     margin-bottom: 10px;
 }
 
-/* Botones de búsqueda y alternar */
+/* Estilo para el botón de búsqueda */
 .search-button {
     padding: 12px;
     background-color: #007bff;
@@ -63,10 +66,12 @@ body{
     margin-bottom: 10px;
 }
 
+/* Efecto de hover en el botón de búsqueda */
 .search-button:hover {
     background-color: #0056b3;
 }
 
+/* Estilo para el botón alternar */
 .toggle-button {
     padding: 12px;
     background-color: #28a745;
@@ -77,18 +82,20 @@ body{
     font-size: 1rem;
 }
 
+/* Efecto de hover en el botón alternar */
 .toggle-button:hover {
     background-color: #218838;
 }
 
-/* Campos de latitud y longitud */
+/* Estilo para los campos de latitud y longitud */
 .lat-lon-fields {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
+/* Estilo para los inputs de latitud y longitud */
 .lat-lon-fields input {
     width: 180px;
     padding: 12px;
@@ -98,6 +105,7 @@ body{
     margin: 10px;
 }
 
+/* Estilo para el botón de latitud y longitud */
 .lat-lon-fields button {
     width: 120px;
     padding: 10px;
@@ -110,11 +118,12 @@ body{
     margin-top: 10px;
 }
 
+/* Efecto de hover en el botón de latitud y longitud */
 .lat-lon-fields button:hover {
     background-color: #0056b3;
 }
 
-/* Mensajes de error */
+/* Estilo para los mensajes de error */
 small {
     color: red;
     font-size: 0.9rem;
@@ -122,13 +131,14 @@ small {
     margin-top: 5px;
 }
 
-/* Contenedor del título */
+/* Estilo para el contenedor del título */
 .title-container {
     position: relative;
     text-align: center;
     margin-top: 50px;
 }
 
+/* Estilo para el título principal */
 .big-title {
     font-size: 3rem;
     color: white;

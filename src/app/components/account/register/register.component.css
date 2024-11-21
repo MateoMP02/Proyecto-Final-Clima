@@ -1,3 +1,4 @@
+/* Contenedor del formulario */
 .form-container {
   display: flex;
   flex-direction: column;
@@ -13,17 +14,20 @@
   height: 330px;
 }
 
+/* Estilo para cada grupo de formulario */
 .form-group {
   width: 100%;
   margin-bottom: 15px;
 }
 
+/* Estilo para las etiquetas */
 label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
+/* Estilo para los inputs */
 input {
   width: 100%;
   padding: 8px;
@@ -32,6 +36,7 @@ input {
   box-sizing: border-box;
 }
 
+/* Estilo para los botones */
 button {
   padding: 10px 20px;
   border: none;
@@ -42,22 +47,25 @@ button {
   transition: background-color 0.3s;
 }
 
+/* Estilo cuando el botón está deshabilitado */
 button:disabled {
   background-color: #aaa;
   cursor: not-allowed;
 }
 
+/* Estilo del botón cuando no está deshabilitado y se pasa el mouse */
 button:not(:disabled):hover {
   background-color: #4cae4c;
 }
 
+/* Estilo para los mensajes de error */
 .error {
   color: #d9534f;
   font-size: 0.875rem;
 }
 
-h1{
+/* Estilo para el título */
+h1 {
   text-align: center;
   font-family: sans-serif;
 }
-

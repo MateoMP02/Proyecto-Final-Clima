@@ -1,62 +1,15 @@
 {
   "users": [
     {
-      "id": "83c9",
-      "username": "Juanceto22",
-      "password": "juanceto123",
-      "email": "juanceto22@gmail.com",
-      "residenceCity": "brasilia",
+      "id": "53b3",
+      "username": "Roberto",
+      "password": "roberto123",
+      "email": "roberto@gmail.com",
+      "residenceCity": "nazareth",
       "searchHistory": [
-        "aaaa",
-        "aaaaaaaaaaaa",
-        "aaaaaaaaaaaa",
-        "aaaaaaaaaaaaa",
-        "aaaaaaaaaaaaaa",
-        "aaaaaaaaaaaaaaaa",
-        "aaaaaaaaaaa"
-      ]
-    },
-    {
-      "id": "3a21",
-      "username": "franco123",
-      "password": "franco123",
-      "email": "franco123@gmail.com",
-      "residenceCity": "brasilia",
-      "searchHistory": []
-    },
-    {
-      "id": "ef8e",
-      "username": "manuel22",
-      "password": "manuel123",
-      "email": "manuel@hotmail.com",
-      "residenceCity": "Mar del plata",
-      "searchHistory": [
-        "mar del plata"
-      ]
-    },
-    {
-      "id": "7366",
-      "username": "asd123",
-      "password": "asd123",
-      "email": "asd@gmail.com",
-      "residenceCity": "galicia",
-      "searchHistory": []
-    },
-    {
-      "id": "48a4",
-      "username": "asdasd",
-      "password": "asd123",
-      "email": "aasd@gmail.com",
-      "residenceCity": "brasilia",
-      "searchHistory": []
-    },
-    {
-      "id": "dc7d",
-      "username": "asdasd",
-      "password": "asd123",
-      "email": "asdasda@gmail.com",
-      "residenceCity": "lima",
-      "searchHistory": [
+        "la paz",
+        "Lat: 12, Lon: 12",
+        "la paz",
         "Lat: 12, Lon: 12"
       ]
     }

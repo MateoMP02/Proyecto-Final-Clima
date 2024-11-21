@@ -1,0 +1,25 @@
+<div class="map-weather-container" *ngIf="currentUser?.residenceCity">
+    <!-- Map Section -->
+    <div class="map-section">
+      <h3 class="nameMap">Map of {{ currentUser?.residenceCity }}</h3>
+      <div id="map"></div>
+    </div>
+  
+    <!-- Weather Details Section -->
+    <div class="weather-section" *ngIf="weatherData?.main">
+        <h4>Weather in {{ currentUser?.residenceCity }}</h4>
+        <section class="weather-details" aria-labelledby="weather-info">
+          <h3 id="weather-info" class="visually-hidden">Weather Information</h3>
+          <div class="temperature-container">
+            <p><strong>Temperature:</strong> {{ weatherData.main.temp }}°K</p>
+            <p><strong>Feels Like:</strong> {{ weatherData.main.feels_like }}°K</p>
+            <p><strong>Min Temperature:</strong> {{ weatherData.main.temp_min }}°K</p>
+            <p><strong>Max Temperature:</strong> {{ weatherData.main.temp_max }}°K</p>
+          </div>
+          <div class="pressure-humidity">
+            <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
+            <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
+          </div>
+        </section>
+      </div>
+      
