@@ -13,13 +13,13 @@ export class AuthService {
   private url = 'http://localhost:3000/users';
 
 
-  login(username: string, password: string): Observable<User | null> {
-    return this.http.get<User[]>(`${this.url}?username=${username}&password=${password}`).pipe(
+  login(email: string, password: string): Observable<User | null> {
+    return this.http.get<User[]>(`${this.url}?email=${email}&password=${password}`).pipe(
       map(users => {
         if (users.length > 0) {
-          return users[0]; // Usuario encontrado
+          return users[0]; // User found
         } else {
-          return null; // Usuario no encontrado
+          return null; // User not found
         }
       }),
       catchError(error => {
@@ -28,6 +28,7 @@ export class AuthService {
       })
     );
   }
+  
 
   register(user: User): Observable<User> {
     return this.http.get<User[]>(`${this.url}?email=${user.email}`).pipe( //Un get para verificar que el mail no existe

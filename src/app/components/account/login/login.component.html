@@ -1,24 +1,36 @@
 <h1>Login</h1>
 <form class="form-container" [formGroup]="loginForm" (ngSubmit)="login()">
+  <!-- Email -->
   <div class="form-group">
-    <label for="username">Username:</label>
-    <input id="username" formControlName="username" placeholder="Enter your username" />
-    <div class="error" *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || loginForm.get('username')?.dirty)">
-      <small *ngIf="loginForm.get('username')?.errors?.['required']">Username is required.</small>
-      <small *ngIf="loginForm.get('username')?.errors?.['minlength']">Username must be at least 4 characters long.</small>
+    <label for="email">Email:</label>
+    <input 
+      id="email" 
+      type="email" 
+      formControlName="email" 
+      placeholder="Enter your email" />
+    <div class="error" *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
+      <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+      <small *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address.</small>
     </div>
   </div>
 
+  <!-- contraseña -->
   <div class="form-group">
     <label for="password">Password:</label>
-    <input type="password" id="password" formControlName="password" placeholder="Enter your password" />
+    <input 
+      type="password" 
+      id="password" 
+      formControlName="password" 
+      placeholder="Enter your password" />
     <div class="error" *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
       <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
       <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 4 characters long.</small>
     </div>
   </div>
 
+  <!-- Login Boton -->
   <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+  <!-- Mensaje de error -->
   <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 </form>
-

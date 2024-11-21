@@ -48,7 +48,7 @@ export class RegisterComponent {
         searchHistory: []
       }).subscribe({
         next: () =>{ alert('Registration successful')
-          this.router.navigate(['/search'])
+          this.router.navigate(['/login'])
       },
         error: (err) => {
           if (err.message === 'This email is already registered.') {

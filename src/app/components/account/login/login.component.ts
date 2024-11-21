@@ -18,39 +18,39 @@ export class LoginComponent {
   authService = inject(AuthService);
 
   loginForm = this.fb.nonNullable.group({
-    username: ['', [Validators.required, Validators.minLength(4)]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(4)]]
-  })
-
-  username: string = '';
-  password: string = '';
+  });
+  
   errorMessage: string = '';
   residenceCity?: string;
   searchHistory?: string[];
+  
+ // Metodo login
+login() {
+  if (this.loginForm.valid) {
+    const formValue = this.loginForm.value;
 
-  login() {
-    if (this.loginForm.valid) {
-      const formValue = this.loginForm.value;
+    const email = formValue.email!;
+    const password = formValue.password!;
 
-      const username = formValue.username!;
-      const password = formValue.password!;
-
-      this.authService.login(username, password).subscribe({
-        next: (user) => {
-          if (user) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            alert('Login successful');
-            this.router.navigate(['/search']); // Redirige a la página principal
-          } else {
-            this.errorMessage = 'Invalid username or password';
-          }
-        },
-        error: () => {
-          this.errorMessage = 'Login failed. Please try again later.';
+    this.authService.login(email, password).subscribe({
+      next: (user) => {
+        if (user) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          alert('Login successful');
+          this.router.navigate(['/search']); // redirecciona a la pagina principal
+        } else {
+          this.errorMessage = 'Incorrect email or password';
         }
-      });
-    } else {
-      this.errorMessage = 'Please fill in all required fields.';
-    }
+      },
+      error: () => {
+        this.errorMessage = 'Error logging in. Please try again later.';
+      }
+    });
+  } else {
+    this.errorMessage = 'Please fill in all required fields.';
   }
+}
+
 }

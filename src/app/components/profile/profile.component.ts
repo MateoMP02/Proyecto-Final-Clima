@@ -13,16 +13,29 @@ import * as L from 'leaflet';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit{
-  currentUser: User | null = null;
-  isEditingCity = false;  // flag
-  weatherService = inject(WeatherService);
-  city: string | null = null;
-  lat: number | null = null;
-  lon: number | null = null;
-  weatherData: any;
-  authService = inject(AuthService);
-  fb = inject(FormBuilder);
-  isNotFound: boolean = false;
+
+  // --- Servicios inyectados ---
+  private authService = inject(AuthService); // Servicio de autenticación
+  private weatherService = inject(WeatherService); // Servicio de clima
+  private fb = inject(FormBuilder); // Constructor de formularios
+
+  // --- Variables relacionadas con el usuario y el formulario ---
+  currentUser: User | null = null; // Usuario actual
+  isEditingCity = false; // Indicador para saber si se está editando la ciudad
+  residenceCityForm = this.fb.nonNullable.group({
+    residenceCity: ['', Validators.required] // Formulario para editar la ciudad de residencia
+  });
+
+  // --- Variables relacionadas con el clima y el mapa ---
+  city: string | null = null; // Nombre de la ciudad
+  lat: number | null = null; 
+  lon: number | null = null; 
+  weatherData: any; // Datos del clima de la ciudad
+  isNotFound: boolean = false; // Indicador para ciudad no encontrada
+  private marker: L.Marker | undefined; // Marcador en el mapa
+  private map: L.Map | null = null; // Instancia del mapa Leaflet
+
+
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
     if (this.currentUser) {
@@ -33,19 +46,7 @@ export class ProfileComponent implements OnInit{
     }
     this.mapForProfail();
   }
-
-  residenceCityForm = this.fb.nonNullable.group({
-    residenceCity: ['', Validators.required]
-  });
-
-  toggleEditCity() {
-    this.isEditingCity = !this.isEditingCity;
-    if (!this.isEditingCity && this.currentUser) {
-      this.residenceCityForm.patchValue({
-        residenceCity: this.currentUser.residenceCity
-      });
-    }
-  }
+ 
 
   clearSearchHistory() {
     if (this.currentUser) {
@@ -61,6 +62,7 @@ export class ProfileComponent implements OnInit{
       });
     }
   }
+
   deleteUser() {
     const confirmed = window.confirm("Are you sure you want to delete your account? This action is permanent and cannot be undone.");
     if(confirmed){
@@ -78,39 +80,50 @@ export class ProfileComponent implements OnInit{
       });
     }
     }
-    
   }
-  validateCity(city: string | undefined): void {
-    const validCity = city ?? ''; // Asegurarse de que sea un string
-    if (validCity.trim() === '') {
-      this.isNotFound = true;
-      console.error('City cannot be empty.');
-      return;
+
+  // --- Métodos relacionados con la edición de la ciudad ---
+  toggleEditCity() {
+    this.isEditingCity = !this.isEditingCity;
+    if (!this.isEditingCity && this.currentUser) {
+      this.residenceCityForm.patchValue({
+        residenceCity: this.currentUser.residenceCity
+      });
     }
-  
-    this.weatherService.getWeatherByCity(validCity).subscribe(
-      (data) => {
-        // Ciudad válida
-        this.isNotFound = false;
-        console.log('City is valid:', data);
-      },
-      (error) => {
-        if (error.status === 404) {
-          // Ciudad no encontrada
-          this.isNotFound = true;
-          console.error('City not found:', error);
-        }
-      }
-    );
   }
-  changeResidenceCity() {
+
+  validateCity(city: string | undefined): Promise<boolean> {
+    return new Promise((resolve) => {
+      const validCity = city ?? '';
+      if (validCity.trim() === '') {
+        console.error('City cannot be empty.');
+        resolve(false);
+        return;
+      }
+  
+      this.weatherService.getWeatherByCity(validCity).subscribe(
+        (data) => {
+          console.log('City is valid:', data);
+          resolve(true); // Ciudad válida
+        },
+        (error) => {
+          if (error.status === 404) {
+            console.error('City not found:', error);
+            resolve(false); // Ciudad no encontrada
+          }
+        }
+      );
+    });
+  }
+  
+  async changeResidenceCity() {
     if (this.residenceCityForm.valid && this.currentUser) {
       const newResidenceCity = this.residenceCityForm.get('residenceCity')?.value;
   
       // Validar la ciudad ingresada
-      this.validateCity(newResidenceCity);
+      const isValidCity = await this.validateCity(newResidenceCity);
   
-      if (!this.isNotFound) {
+      if (isValidCity) {
         this.currentUser.residenceCity = newResidenceCity;
   
         this.authService.updateUser(this.currentUser).subscribe({
@@ -130,13 +143,17 @@ export class ProfileComponent implements OnInit{
       }
     }
   }
+
+// --- Métodos relacionados con el clima y el mapa ---
   mapForProfail(){
     if(this.currentUser?.residenceCity){
+      // Buscar datos del clima para la ciudad actual
       this.weatherService.getWeatherByCity(this.currentUser?.residenceCity).subscribe(
       data => {
         this.weatherData = data;
         this.lat = data.coord.lat;
         this.lon = data.coord.lon;
+        // Inicializar o actualizar el mapa
         this.initMap(this.lat!, this.lon!);
         
       },
@@ -149,8 +166,7 @@ export class ProfileComponent implements OnInit{
     }
     
   }
-  private marker: L.Marker | undefined;
-  private map: L.Map | null = null;
+
 
   private initMap(lat: number, lon: number) {
     if (!document.getElementById('map')) {
@@ -169,6 +185,7 @@ export class ProfileComponent implements OnInit{
           .bindPopup('Ubicación seleccionada')
           .openPopup();
       }
+
     } else {
       // Crear el mapa si no existe
       this.map = L.map('map').setView([lat, lon], 10);
@@ -181,5 +198,19 @@ export class ProfileComponent implements OnInit{
         .bindPopup('Ubicación seleccionada')
         .openPopup();
     }
+    const weatherInfo = `
+      <h4>Weather in ${this.weatherData.name}</h4>
+      <p><strong>Temperature:</strong> ${this.weatherData.main.temp}°K</p>
+      <p><strong>Weather:</strong> ${this.weatherData.weather[0].description}</p>
+      <p><strong>Humidity:</strong> ${this.weatherData.main.humidity}%</p>
+      <p><strong>Wind Speed:</strong> ${this.weatherData.wind.speed}m/s</p>
+    `;
+
+    // Asignar el contenido al popup del marcador
+    if (this.marker) {
+      this.marker.setPopupContent(weatherInfo);
+    }
   }
+
+
 }
