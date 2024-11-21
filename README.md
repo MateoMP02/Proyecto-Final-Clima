@@ -13,39 +13,6 @@ Este proyecto fue desarrollado por los siguientes miembros:
 - Tomás Denk
 - Ezequiel García
 
-## Descripción
-
-**ClimateNow** es una plataforma que proporciona los siguientes servicios:
-
-- **Clima actual** y **pronóstico** a corto y largo plazo para cualquier ubicación.
-- **Alertas** de condiciones climáticas extremas.
-- **Personalización** de la experiencia con temas y unidades de medida.
-- **Creación y gestión de cuentas de usuario**, donde podrán visualizar y modificar sus datos, incluyendo lugares favoritos y su ubicación de residencia.
-
-Sin embargo, no incluirá funciones de redes sociales ni personalización extensiva más allá de los temas y unidades de medida.
-
-## Beneficios, Objetivos y Metas
-
-### Beneficios de ClimateNow
-
-- **Accesibilidad**: Los usuarios podrán acceder fácilmente a la información meteorológica desde cualquier dispositivo con acceso a Internet.
-- **Fiabilidad**: Información precisa y actualizada sobre las condiciones meteorológicas.
-- **Facilidad de uso**: Interfaz amigable para el usuario con un diseño claro y sencillo.
-
-### Objetivos
-
-- Proporcionar una herramienta confiable para consultar el clima.
-- Permitir la personalización básica de la experiencia del usuario.
-- Ofrecer una solución web ligera para la consulta rápida de datos meteorológicos.
-
-### Metas
-
-- **Creación y gestión de cuentas**: Los usuarios podrán crear cuentas, iniciar sesión, cerrar sesión y recuperar contraseñas olvidadas.
-- **Personalización del perfil**: Los usuarios podrán personalizar su experiencia, elegir temas y unidades de medida.
-- **Consultas meteorológicas**: Los usuarios podrán consultar el clima actual y los pronósticos del tiempo en su ciudad o lugares favoritos.
-
----
-
 ## Instalación
 
 Sigue estos pasos para instalar y ejecutar **ClimateNow** en tu máquina local.
