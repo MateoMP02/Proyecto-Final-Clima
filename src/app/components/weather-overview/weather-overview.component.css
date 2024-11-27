@@ -58,6 +58,10 @@ header {
   flex-direction: column; /* Muestra las propiedades de forma vertical */
   gap: 15px;
 }
+/* Estilo de las coordenadas*/
+.coords {
+  text-align: center;
+}
 
 /* Estilo de los párrafos dentro del contenedor de información adicional */
 .weather-details .info-container p {

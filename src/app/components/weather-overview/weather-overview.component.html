@@ -25,6 +25,9 @@
       <p><strong>Timezone:</strong> {{ translateTimezone(weatherData.timezone) }}</p>
     </div>
 
+    <div class="coords">
+    <p><strong>Lat: </strong>{{weatherData.coord.lat}} <strong> Lon: </strong>{{weatherData.coord.lon}}</p>
+    </div>
     <div>
       <h3>Map of {{weatherData.name}}</h3>
       <div id="map" style="height: 400px; width: 100%;"></div>
