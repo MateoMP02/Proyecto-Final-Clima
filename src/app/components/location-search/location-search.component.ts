@@ -94,6 +94,9 @@ export class LocationSearchComponent {
 
   // Función que actualiza el historial de búsqueda del usuario en el sistema
   updateSearchHistory(currentUser: any, searchItem: string) {
+    if (/\d/.test(searchItem)) {
+      return; // No agrega el item al historial si es un número
+    }
     currentUser.searchHistory = currentUser.searchHistory || [];
     currentUser.searchHistory.push(searchItem);
 

@@ -102,6 +102,13 @@ export class ProfileComponent implements OnInit {
         return;
       }
 
+      // Verifica si la ciudad contiene números
+    if (/\d/.test(validCity)) {
+      console.error('City name cannot contain numbers.');
+      resolve(false); // Ciudad no válida si contiene números
+      return;
+    }
+
       // Verifica la existencia de la ciudad consultando a un servicio de clima
       this.weatherService.getWeatherByCity(validCity).subscribe(
         (data) => {

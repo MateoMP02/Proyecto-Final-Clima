@@ -7,11 +7,35 @@
       "email": "roberto@gmail.com",
       "residenceCity": "nazareth",
       "searchHistory": [
-        "la paz",
         "Lat: 12, Lon: 12",
         "la paz",
-        "Lat: 12, Lon: 12"
+        "la paz",
+        "Lat: 13, Lon: 13"
       ]
+    },
+    {
+      "id": "5377",
+      "username": "pepe",
+      "password": "pepe123",
+      "email": "pepe@gmail.com",
+      "residenceCity": "sudafrica",
+      "searchHistory": []
+    },
+    {
+      "id": "7514",
+      "username": "franco123",
+      "password": "franco123",
+      "email": "franco123@gmail.com",
+      "residenceCity": "lima",
+      "searchHistory": []
+    },
+    {
+      "id": "175a",
+      "username": "carlos",
+      "password": "carlos",
+      "email": "carlos@gmail.com",
+      "residenceCity": "lima",
+      "searchHistory": []
     }
   ]
 }

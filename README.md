@@ -13,10 +13,6 @@ Este proyecto fue desarrollado por los siguientes miembros:
 - Tomás Denk
 - Ezequiel García
 
-## Instalación
-
-Sigue estos pasos para instalar y ejecutar **ClimateNow** en tu máquina local.
-
 ### Requisitos
 
 - **Node.js** (se recomienda la última versión estable).

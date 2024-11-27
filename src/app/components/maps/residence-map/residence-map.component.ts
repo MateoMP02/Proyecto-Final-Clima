@@ -63,9 +63,9 @@ export class ResidenceMapComponent implements OnInit {
   // Método para inicializar o actualizar el mapa con las coordenadas proporcionadas
   private initMap(lat: number, lon: number) {
     // Verifica si el contenedor del mapa existe
-    if (!document.getElementById('map')) {
-      // Si el mapa aún no está listo, intenta inicializarlo nuevamente después de un corto tiempo
-      setTimeout(() => this.initMap(lat, lon), 100);
+    const mapContainer = document.getElementById('map');
+    if (!mapContainer) {
+      console.log('El mapa ya se encontraba cargado');
       return;
     }
 
