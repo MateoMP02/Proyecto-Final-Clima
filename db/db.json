@@ -27,7 +27,12 @@
       "password": "franco123",
       "email": "franco123@gmail.com",
       "residenceCity": "lima",
-      "searchHistory": []
+      "searchHistory": [
+        "brasilia",
+        "lima",
+        "libano",
+        "lima"
+      ]
     },
     {
       "id": "175a",

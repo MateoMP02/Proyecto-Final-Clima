@@ -2,7 +2,7 @@
   <header class="headeer">
     <h1>Current Weather</h1>
   </header>
-
+  <div class="container">
   <div class="select-container">
     <select id="unidad" [(ngModel)]="unidadSeleccionada">
       <option value="K">Kelvin (°K)</option>
@@ -41,10 +41,6 @@
         <p><strong>Feels Like:</strong> {{ getTempConvert(weatherData.main.feels_like) }}</p>
         <p><strong>Min Temperature:</strong> {{ getTempConvert(weatherData.main.temp_min) }}</p>
         <p><strong>Max Temperature:</strong> {{ getTempConvert(weatherData.main.temp_max) }}</p>
-      </div>
-      
-      <!-- Pressure and Humidity -->
-      <div class="pressure-humidity">
         <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
         <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
       </div>
@@ -67,7 +63,7 @@
   <!-- Forecast Section -->
   <section *ngIf="forecastData && !isNotFound && weatherData" class="clearfix" aria-labelledby="forecast-header">
     <header id="forecast-header" class="headeer">
-      <h2>Forecast</h2>
+      <h4>Forecast</h4>
     </header>
     <div *ngFor="let forecast of forecastData" class="tdia">
       <p><strong>Day:</strong> {{ forecast.date }}</p>
@@ -77,5 +73,6 @@
       <p><strong>Cloudiness:</strong> {{ forecast.clouds.all }}%</p>
     </div>
   </section>
+  </div>
 </body>
 
