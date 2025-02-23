@@ -3,20 +3,27 @@
     <h1>Current Weather</h1>
   </header>
   <div class="container">
-  <div class="select-container">
-    <select id="unidad" [(ngModel)]="unidadSeleccionada">
-      <option value="K">Kelvin (°K)</option>
-      <option value="C">Celsius (°C)</option>
-      <option value="F">Fahrenheit (°F)</option>
-    </select>
-    <select id="unidad-viento" [(ngModel)]="unidadSeleccionadaViento">
-      <option value="m/s">Meters per Second (m/s)</option>
-      <option value="km/h">Kilometer per Hour (km/h)</option>
-    </select>
+    <div class="select-container">
+      <select id="unidad" [(ngModel)]="unidadSeleccionada">
+        <option value="K">Kelvin (°K)</option>
+        <option value="C">Celsius (°C)</option>
+        <option value="F">Fahrenheit (°F)</option>
+      </select>
+  
+      <select id="unidad-viento" [(ngModel)]="unidadSeleccionadaViento">
+        <option value="m/s">Meters per Second (m/s)</option>
+        <option value="km/h">Kilometer per Hour (km/h)</option>
+      </select>
+  
+      <select id="unidad-presion" [(ngModel)]="unidadSeleccionadaPresion">
+        <option value="hPa">Hectopascal (hPa)</option>
+        <option value="atm">Atmosphere (atm)</option>
+      </select>
   </div>
   
+  
   <div *ngIf="isNotFound">
-    <h1>The location does not exist.</h1>
+    <h4>The location does not exist.</h4>
   </div>
   
   <main *ngIf="!isNotFound && weatherData" class="div-container" aria-labelledby="current-weather">
@@ -41,7 +48,7 @@
         <p><strong>Feels Like:</strong> {{ getTempConvert(weatherData.main.feels_like) }}</p>
         <p><strong>Min Temperature:</strong> {{ getTempConvert(weatherData.main.temp_min) }}</p>
         <p><strong>Max Temperature:</strong> {{ getTempConvert(weatherData.main.temp_max) }}</p>
-        <p><strong>Pressure:</strong> {{ weatherData.main.pressure }} hPa</p>
+        <p><strong>Pressure:</strong> {{  getPressureConvert(weatherData.main.pressure) }}</p>
         <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
       </div>
     </section>
@@ -75,10 +82,11 @@
         <!-- Icono del clima -->
         <img [src]="'https://openweathermap.org/img/wn/' + forecast.icon + '.png'" 
              [alt]="forecast.description">
-        <p>{{ getTempConvert(forecast.temp) }}°C</p>
+        <p>{{ getTempConvert(forecast.temp) }}</p>
         <p>{{ forecast.description }}</p>
-        <p>💨 {{ getSpeedConvert(forecast.windSpeed) }} km/h</p>
+        <p>💨 {{ getSpeedConvert(forecast.windSpeed) }}</p>
         <p>☁️ {{ forecast.clouds }}%</p>
+        <p>{{getPressureConvert(forecast.pressure)}}</p>
       </div>
     </div>
   </section>  

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
 import { CommonModule } from '@angular/common';
 import * as L from 'leaflet';
@@ -9,7 +9,7 @@ import { ForecastItem } from '../../types/forecast.model';
 @Component({
   selector: 'app-weather-overview',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule],
   templateUrl: './weather-overview.component.html',
   styleUrl: './weather-overview.component.css'
 })
@@ -34,6 +34,8 @@ export class WeatherOverviewComponent implements OnInit {
 
   // Unidad seleccionada para la velocidad del viento (m/s por defecto)
   unidadSeleccionadaViento: string = 'm/s';
+
+  unidadSeleccionadaPresion: string = 'hPa';
 
   // Servicios
   private weatherService = inject(WeatherService);
@@ -104,7 +106,8 @@ export class WeatherOverviewComponent implements OnInit {
           description: forecast.weather[0].description,
           icon: forecast.weather[0].icon,
           windSpeed: forecast.wind.speed,
-          clouds: forecast.clouds.all
+          clouds: forecast.clouds.all,
+          pressure: forecast.main.pressure
         });
       }
     });
@@ -159,15 +162,12 @@ export class WeatherOverviewComponent implements OnInit {
   private map: L.Map | null = null;
 
   private initMap(lat: number, lon: number) {
-    // Inicializa o actualiza el mapa con la ubicación dada
     if (!document.getElementById('map')) {
-      // Si el contenedor del mapa no está listo, espera y vuelve a intentar
       setTimeout(() => this.initMap(lat, lon), 100);
       return;
     }
-
+  
     if (this.map) {
-      // Si el mapa ya existe, actualiza la vista y la ubicación del marcador
       this.map.setView([lat, lon], 10);
       this.map.invalidateSize();
       if (this.marker) {
@@ -178,32 +178,39 @@ export class WeatherOverviewComponent implements OnInit {
           .openPopup();
       }
     } else {
-      // Si el mapa no existe, lo crea y agrega un marcador
       this.map = L.map('map').setView([lat, lon], 10);
+  
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
       }).addTo(this.map);
+  
+      
+      L.tileLayer(`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=feab7053b10786492fa46dc5dc225099`, {
+        attribution: 'Weather data © OpenWeatherMap',
+        opacity: 1
+      }).addTo(this.map);
 
+  
       this.map.invalidateSize();
       this.marker = L.marker([lat, lon]).addTo(this.map)
         .bindPopup('Ubicación seleccionada')
         .openPopup();
     }
-
-    // Muestra la información del clima en el popup del marcador
+  
+    // Actualizar información del clima en el marcador
     const weatherInfo = `
-    <h4>Weather in ${this.weatherData.name}</h4>
-    <p><strong>Temperature:</strong> ${this.getTempConvert(this.weatherData.main.temp)}</p>
-    <p><strong>Weather:</strong> ${this.weatherData.weather[0].description}</p>
-    <p><strong>Humidity:</strong> ${this.weatherData.main.humidity}%</p>
-    <p><strong>Wind Speed:</strong> ${this.getSpeedConvert(this.weatherData.wind.speed)}</p>
-  `;
-
+      <h4>Weather in ${this.weatherData.name}</h4>
+      <p><strong>Temperature:</strong> ${this.getTempConvert(this.weatherData.main.temp)}</p>
+      <p><strong>Weather:</strong> ${this.weatherData.weather[0].description}</p>
+      <p><strong>Humidity:</strong> ${this.weatherData.main.humidity}%</p>
+      <p><strong>Wind Speed:</strong> ${this.getSpeedConvert(this.weatherData.wind.speed)}</p>
+    `;
+  
     if (this.marker) {
       this.marker.setPopupContent(weatherInfo);
     }
   }
-
+  
   getTempConvert(temp: number) {
     // Convierte la temperatura según la unidad seleccionada
     switch (this.unidadSeleccionada) {
@@ -228,6 +235,17 @@ export class WeatherOverviewComponent implements OnInit {
     }
   }
 
+  getPressureConvert(press: number) {
+    switch (this.unidadSeleccionadaPresion) {
+      case 'hPa':
+        return press.toFixed(2) + ' hPa';
+      case 'atm':
+        return (press * 0.000986923).toFixed(2) + ' atm';
+      default:
+        return press.toFixed(2) + ' hPa';
+    }
+  }
+  
   translateTimezone(offsetInSeconds: number): string {
     // Convierte el offset de zona horaria en segundos a un formato legible
     const offsetInHours = offsetInSeconds / 3600;

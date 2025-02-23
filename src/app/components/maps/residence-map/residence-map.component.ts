@@ -60,55 +60,56 @@ export class ResidenceMapComponent implements OnInit {
     }
   }
 
-  // Método para inicializar o actualizar el mapa con las coordenadas proporcionadas
-  private initMap(lat: number, lon: number) {
-    // Verifica si el contenedor del mapa existe
-    const mapContainer = document.getElementById('map');
-    if (!mapContainer) {
-      console.log('El mapa ya se encontraba cargado');
-      return;
-    }
-
-    if (this.map) {
-      // Si el mapa ya está inicializado, ajusta la vista y la posición del marcador
-      this.map.setView([lat, lon], 10);
-      this.map.invalidateSize();
-      if (this.marker) {
-        // Si ya existe un marcador, actualiza su posición
-        this.marker.setLatLng([lat, lon]);
+  // --- Funciones del mapa ---
+    private initMap(lat: number, lon: number) {
+      if (!document.getElementById('map')) {
+        setTimeout(() => this.initMap(lat, lon), 100);
+        return;
+      }
+    
+      if (this.map) {
+        this.map.setView([lat, lon], 10);
+        this.map.invalidateSize();
+        if (this.marker) {
+          this.marker.setLatLng([lat, lon]);
+        } else {
+          this.marker = L.marker([lat, lon]).addTo(this.map)
+            .bindPopup('Ubicación seleccionada')
+            .openPopup();
+        }
       } else {
-        // Si no existe un marcador, crea uno nuevo
+        this.map = L.map('map').setView([lat, lon], 10);
+    
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(this.map);
+    
+        
+        L.tileLayer(`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=feab7053b10786492fa46dc5dc225099`, {
+          attribution: 'Weather data © OpenWeatherMap',
+          opacity: 1
+        }).addTo(this.map);
+  
+    
+        this.map.invalidateSize();
         this.marker = L.marker([lat, lon]).addTo(this.map)
           .bindPopup('Ubicación seleccionada')
           .openPopup();
       }
-    } else {
-      // Si el mapa no ha sido creado, lo inicializa
-      this.map = L.map('map').setView([lat, lon], 10);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(this.map);
-
-      this.map.invalidateSize();
-      this.marker = L.marker([lat, lon]).addTo(this.map)
-        .bindPopup('Ubicación seleccionada')
-        .openPopup();
+    
+      // Actualizar información del clima en el marcador
+      const weatherInfo = `
+        <h4>Weather in ${this.weatherData.name}</h4>
+        <p><strong>Temperature:</strong> ${this.weatherData.main.temp} °K</p>
+        <p><strong>Weather:</strong> ${this.weatherData.weather[0].description}</p>
+        <p><strong>Humidity:</strong> ${this.weatherData.main.humidity}%</p>
+        <p><strong>Wind Speed:</strong> ${this.weatherData.wind.speed} m/s</p>
+      `;
+    
+      if (this.marker) {
+        this.marker.setPopupContent(weatherInfo);
+      }
     }
-
-    // Información adicional del clima que se mostrará en el popup del marcador
-    const weatherInfo = `
-      <h4>Weather in ${this.weatherData.name}</h4>
-      <p><strong>Temperature:</strong> ${this.weatherData.main.temp}°K</p>
-      <p><strong>Weather:</strong> ${this.weatherData.weather[0].description}</p>
-      <p><strong>Humidity:</strong> ${this.weatherData.main.humidity}%</p>
-      <p><strong>Wind Speed:</strong> ${this.weatherData.wind.speed}m/s</p>
-    `;
-
-    // Asigna el contenido del clima al popup del marcador
-    if (this.marker) {
-      this.marker.setPopupContent(weatherInfo);
-    }
-  }
 
 
 }

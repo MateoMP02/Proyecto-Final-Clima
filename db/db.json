@@ -49,7 +49,9 @@
       "password": "asd123",
       "email": "asd@gmail.com",
       "residenceCity": "nazareth",
-      "searchHistory": []
+      "searchHistory": [
+        "nazareth"
+      ]
     },
     {
       "id": "bc32",
