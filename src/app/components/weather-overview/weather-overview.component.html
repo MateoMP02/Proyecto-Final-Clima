@@ -60,19 +60,30 @@
     </section>
   </main>
 
-  <!-- Forecast Section -->
   <section *ngIf="forecastData && !isNotFound && weatherData" class="clearfix" aria-labelledby="forecast-header">
     <header id="forecast-header" class="headeer">
       <h4>Forecast</h4>
     </header>
-    <div *ngFor="let forecast of forecastData" class="tdia">
-      <p><strong>Day:</strong> {{ forecast.date }}</p>
-      <p><strong>Temperature:</strong> {{ getTempConvert(forecast.main.temp) }}</p>
-      <p><strong>Weather:</strong> {{ forecast.weather[0].description }}</p>
-      <p><strong>Wind Speed:</strong> {{ getSpeedConvert(forecast.wind.speed) }}</p>
-      <p><strong>Cloudiness:</strong> {{ forecast.clouds.all }}%</p>
+    <div class="forecast-container">
+      <div 
+        *ngFor="let forecast of groupedForecasts"
+        class="tdia"
+        (click)="navigateToDayForecast(forecast.date)" 
+        title="Ver detalles del clima para {{ forecast.date }}"
+      >
+        <p><strong>{{ forecast.date }}</strong></p>
+        <!-- Icono del clima -->
+        <img [src]="'https://openweathermap.org/img/wn/' + forecast.icon + '.png'" 
+             [alt]="forecast.description">
+        <p>{{ getTempConvert(forecast.temp) }}°C</p>
+        <p>{{ forecast.description }}</p>
+        <p>💨 {{ getSpeedConvert(forecast.windSpeed) }} km/h</p>
+        <p>☁️ {{ forecast.clouds }}%</p>
+      </div>
     </div>
-  </section>
+  </section>  
+  
+
   </div>
 </body>
 

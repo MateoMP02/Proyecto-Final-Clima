@@ -1,14 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
 import { CommonModule } from '@angular/common';
 import * as L from 'leaflet';
 import { FormsModule } from '@angular/forms';
+import { ForecastItem } from '../../types/forecast.model';
 
 @Component({
   selector: 'app-weather-overview',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './weather-overview.component.html',
   styleUrl: './weather-overview.component.css'
 })
@@ -26,6 +27,7 @@ export class WeatherOverviewComponent implements OnInit {
 
   // Almacena el pronóstico diario
   dailyForecast: any[] = [];
+  groupedForecasts: any[] = [];
 
   // Unidad seleccionada para la temperatura (K=Kelvin por defecto)
   unidadSeleccionada: string = 'K';
@@ -36,68 +38,83 @@ export class WeatherOverviewComponent implements OnInit {
   // Servicios
   private weatherService = inject(WeatherService);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
 
 
   ngOnInit() {
-    // Obtiene los parámetros de la ruta y consulta el clima para la ciudad o coordenadas
     this.route.queryParams.subscribe(params => {
       this.city = params['city'] || null;
       this.lat = params['lat'] ? +params['lat'] : null;
       this.lon = params['lon'] ? +params['lon'] : null;
       this.isNotFound = false;
-
+  
       if (this.lat !== null && this.lon !== null) {
-        // Si se proporciona latitud y longitud, consulta el clima por coordenadas
+        // Obtener clima y pronóstico por coordenadas
         this.weatherService.getWeatherByCoordinates(this.lat, this.lon).subscribe(
           data => {
             this.weatherData = data;
-          },
-          error => {
-            if (error.status === 404) {
-              this.isNotFound = true;
-            }
-          }
-        );
-
-        this.weatherService.getForecastByCoordinates(this.lat, this.lon).subscribe(
-          data => {
-            this.forecastData = this.getDailyForecast(data.list);
+            // Inicializar el mapa después de obtener los datos
             this.initMap(this.lat!, this.lon!);
           },
-          error => {
-            if (error.status === 404) {
-              this.isNotFound = true;
-            }
-          }
+          error => { if (error.status === 404) this.isNotFound = true; }
+        );
+  
+        this.weatherService.getForecastByCoordinates(this.lat, this.lon).subscribe(
+          data => {
+            this.forecastData = data.list as ForecastItem[];
+            this.groupForecasts();
+          },
+          error => { if (error.status === 404) this.isNotFound = true; }
         );
       } else if (this.city) {
-        // Si se proporciona una ciudad, consulta el clima por ciudad
+        // Obtener clima y pronóstico por ciudad
         this.weatherService.getWeatherByCity(this.city).subscribe(
           data => {
             this.weatherData = data;
             this.lat = data.coord.lat;
             this.lon = data.coord.lon;
+            // Inicializar el mapa después de obtener las coordenadas
             this.initMap(this.lat!, this.lon!);
           },
-          error => {
-            if (error.status === 404) {
-              this.isNotFound = true;
-            }
-          }
+          error => { if (error.status === 404) this.isNotFound = true; }
         );
-
+  
         this.weatherService.getForecastByCity(this.city).subscribe(
           data => {
-            this.forecastData = this.getDailyForecast(data.list);
+            this.forecastData = data.list as ForecastItem[];
+            this.groupForecasts();
           },
-          error => {
-            if (error.status === 404) {
-              this.isNotFound = true;
-            }
-          }
+          error => { if (error.status === 404) this.isNotFound = true; }
         );
       }
+    });
+  }
+  
+
+  groupForecasts(): void {
+    const grouped = new Map<string, any>();
+
+    this.forecastData.forEach((forecast: ForecastItem) => {
+      const date = forecast.dt_txt.split(' ')[0]; // Obtener solo la fecha YYYY-MM-DD
+      if (!grouped.has(date)) {
+        grouped.set(date, {
+          date,
+          temp: forecast.main.temp,
+          description: forecast.weather[0].description,
+          icon: forecast.weather[0].icon,
+          windSpeed: forecast.wind.speed,
+          clouds: forecast.clouds.all
+        });
+      }
+    });
+
+    this.groupedForecasts = Array.from(grouped.values());
+  }
+
+  navigateToDayForecast(date: string): void {
+    this.router.navigate(['/weatherbyday', date], {
+      queryParams: this.city ? { city: this.city } : { lat: this.lat, lon: this.lon }
     });
   }
 

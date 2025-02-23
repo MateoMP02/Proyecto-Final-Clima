@@ -73,12 +73,6 @@ header {
 }
 
 
-/* Efecto de hover en la tarjeta del día */
-.tdia:hover {
-  background-color: #d1d8e0;
-}
-
-
 /* Contenedor de Forecast */
 .clearfix {
   display: flex;
@@ -86,7 +80,7 @@ header {
   align-items: center;
   justify-content: center;
   margin: 20px auto;
-  max-width: 45%;
+  max-width: 90%;
   padding: 20px;
   background-color: #f9f9f9;
   border: 2px solid #ccc;
@@ -95,22 +89,51 @@ header {
   text-align: center;
 }
 
-.tdia {
+/* Contenedor de los días del pronóstico */
+.forecast-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
-  padding: 15px;
-  margin: 10px 0;
+}
+
+/* Tarjetas de los días del pronóstico */
+.tdia {
+  width: 180px;
+  padding: 10px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;  /* Hace que sea clickeable */
+  text-decoration: none;
+  color: inherit; /* Evita cambio de color en enlaces */
 }
 
+/* Ícono del clima */
+.tdia img {
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: 5px auto;
+}
+
+/* Efecto hover */
+.tdia:hover {
+  background-color: #d1d8e0;
+}
+
+/* Encabezado del Forecast */
 .headeer {
   text-align: center;
   margin-bottom: 15px;
   width: 100%;
   border-radius: 8px;
 }
+
 
 h2 {
   margin: 0;

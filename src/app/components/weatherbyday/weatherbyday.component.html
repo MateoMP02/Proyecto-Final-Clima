@@ -1,0 +1,27 @@
+<section *ngIf="detailedForecasts.length > 0">
+    <header>
+      <h2>Detalles del Clima - {{ date }}</h2>
+
+    <!-- Selectores de unidades -->
+    <div class="unit-selectors">
+        <select id="unidad" [(ngModel)]="unidadSeleccionada">
+          <option value="K">Kelvin (°K)</option>
+          <option value="C">Celsius (°C)</option>
+          <option value="F">Fahrenheit (°F)</option>
+        </select>
+        <select id="unidad-viento" [(ngModel)]="unidadSeleccionadaViento">
+          <option value="m/s">Meters per Second (m/s)</option>
+          <option value="km/h">Kilometer per Hour (km/h)</option>
+        </select>
+      </div>
+ 
+    <div class="forecast-details">
+        <div *ngFor="let forecast of detailedForecasts" class="hourly-card">
+          <p><strong>{{ forecast.dt_txt.split(' ')[1] }}</strong></p>
+          <img [src]="'https://openweathermap.org/img/wn/' + forecast.weather[0].icon + '.png'">
+          <p>{{ getTempConvert(forecast.main.temp) }}</p>
+          <p>{{ forecast.weather[0].description }}</p>
+          <p>💨 {{ getSpeedConvert(forecast.wind.speed) }}</p>
+          <p>☁️ {{ forecast.clouds.all }}%</p>
+        </div>
+      </div>
