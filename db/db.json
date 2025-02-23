@@ -31,6 +31,7 @@
         "brasilia",
         "lima",
         "libano",
+        "lima",
         "lima"
       ]
     },
@@ -40,6 +41,22 @@
       "password": "carlos",
       "email": "carlos@gmail.com",
       "residenceCity": "lima",
+      "searchHistory": []
+    },
+    {
+      "id": "f66f",
+      "username": "asdasd",
+      "password": "asd123",
+      "email": "asd@gmail.com",
+      "residenceCity": "nazareth",
+      "searchHistory": []
+    },
+    {
+      "id": "bc32",
+      "username": "pepe",
+      "password": "pepe123",
+      "email": "pepe123@gmail.com",
+      "residenceCity": "la paz",
       "searchHistory": []
     }
   ]

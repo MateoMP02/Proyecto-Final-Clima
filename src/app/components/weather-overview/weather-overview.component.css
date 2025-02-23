@@ -22,7 +22,7 @@ header {
   border-radius: 10px;
   color: #333;
   padding: 20px;
-  max-width: 45%; /* Aumenta el ancho del contenedor */
+  max-width: 45%; 
   margin: 20px auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -37,25 +37,25 @@ header {
 .weather-details .temperature-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Distribuye el espacio entre los elementos */
-  gap: 20px; /* Espacio entre los elementos */
+  justify-content: space-between; 
+  gap: 20px; 
 }
 
 /* Estilo para cada parámetro de temperatura */
 .weather-details .temperature-container p {
-  width: 45%; /* Ajusta el tamaño para evitar desbordes */
+  width: 45%; 
   background-color: #f8f9fa;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
-  text-align: center; /* Centra el texto */
+  text-align: center; 
 }
 
 /* Contenedor de información adicional (presión, humedad, etc.) */
 .weather-details .info-container {
   display: flex;
-  flex-direction: column; /* Muestra las propiedades de forma vertical */
+  flex-direction: column; 
   gap: 15px;
 }
 /* Estilo de las coordenadas*/
@@ -71,8 +71,6 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
-
-/* Estilo del contenedor de la tarjeta del día */
 
 
 /* Efecto de hover en la tarjeta del día */
@@ -145,7 +143,7 @@ h4 {
 /* Estilo para los encabezados h1 y h2 */
 h1, h2, h3, h4 {
   text-align: center;
-  font-size: 1.6rem; /* Ajuste el tamaño de la fuente para una mejor visualización */
+  font-size: 1.6rem; 
   margin-bottom: 20px;
 }
 
@@ -153,19 +151,19 @@ h1, h2, h3, h4 {
 #map {
   height: 300px;
   width: 100%;
-  border-radius: 8px; /* Redondea los bordes del mapa */
+  border-radius: 8px; 
   margin-bottom: 20px;
 }
 
 /* Espacio entre las secciones de detalles climáticos */
 .weather-details section {
-  margin-bottom: 30px; /* Espacio entre las secciones */
+  margin-bottom: 30px; 
 }
 
 
 /* Estilo para los párrafos de presión y humedad */
 .weather-details p {
-  width: 45%; /* Ajuste de tamaño para evitar desbordes */
+  width: 45%; 
   background-color: #f8f9fa;
   padding: 10px;
   border-radius: 8px;

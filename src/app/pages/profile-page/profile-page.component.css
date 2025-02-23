@@ -1,0 +1,11 @@
+.profile-container {
+    min-height: 100vh; /* Hace que ocupe toda la pantalla */
+    background-image: url('/fondoProfile.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }

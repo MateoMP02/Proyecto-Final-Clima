@@ -86,9 +86,7 @@ export class RegisterComponent {
     return new Promise((resolve) => {
       const validCity = city ?? '';
       if (validCity.trim() === '') {
-        console.error('City cannot be empty.');
-        resolve(false);
-        return;
+        resolve(true);
       }
 
       // Verifica si la ciudad contiene números

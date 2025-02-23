@@ -204,8 +204,8 @@ export class WeatherOverviewComponent implements OnInit {
     switch (this.unidadSeleccionadaViento) {
       case 'm/s':
         return speed.toFixed(2) + 'm/s';
-      case 'K/h':
-        return (speed * 3.6).toFixed(2) + 'K/h';
+      case 'km/h':
+        return (speed * 3.6).toFixed(2) + ' km/h';
       default:
         return speed.toFixed(2) + 'm/s';
     }
