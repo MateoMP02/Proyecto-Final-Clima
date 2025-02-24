@@ -23,7 +23,7 @@
           <form [formGroup]="searchLatLonBar" (ngSubmit)="onSubmitLatLon()">
             <input type="text" placeholder="Latitude" formControlName="lat" (keyup.enter)="onSubmitLatLon()" />
             <input type="text" placeholder="Longitude" formControlName="lon" (keyup.enter)="onSubmitLatLon()" />
-            <button class="search-button">Search</button>
+            <button class="search-button" [disabled]="searchLatLonBar.invalid">Search</button>
           </form>
         </div>
       </form>
