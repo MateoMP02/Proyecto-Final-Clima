@@ -4,7 +4,7 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Ocupa toda la pantalla verticalmente */
+    min-height: 100vh; 
     text-align: center;
     background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente para mejorar la legibilidad */
     padding: 20px;
@@ -36,10 +36,10 @@ section {
   /* 🟢 Tarjetas de pronóstico por hora */
   .hourly-card {
     width: 160px;
-    background: rgba(255, 255, 255, 0.9); /* Fondo con ligera opacidad */
+    background: rgba(94, 230, 240, 0.9); /* Fondo con ligera opacidad */
     border-radius: 10px;
     padding: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(153, 181, 199, 0.2);
     transition: transform 0.3s ease, background 0.3s ease;
   }
   

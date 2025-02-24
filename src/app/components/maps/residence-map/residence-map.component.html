@@ -1,11 +1,11 @@
 <div class="map-weather-container" *ngIf="currentUser?.residenceCity">
-    <!-- Map Section -->
+    <!-- Seccion del mapa -->
     <div class="map-section">
       <h3 class="nameMap">Map of {{ currentUser?.residenceCity }}</h3>
       <div id="map"></div>
     </div>
   
-    <!-- Weather Details Section -->
+    <!-- Detalles del clima -->
     <div class="weather-section" *ngIf="weatherData?.main">
         <h4>Weather in {{ currentUser?.residenceCity }}</h4>
         <section class="weather-details" aria-labelledby="weather-info">

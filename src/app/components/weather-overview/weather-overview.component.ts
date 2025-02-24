@@ -160,55 +160,50 @@ export class WeatherOverviewComponent implements OnInit {
   // --- Funciones del mapa ---
   private marker: L.Marker | undefined;
   private map: L.Map | null = null;
+  private weatherLayer: L.TileLayer | null = null;
+  selectedMapType: string = 'temp_new'; 
 
   private initMap(lat: number, lon: number) {
     if (!document.getElementById('map')) {
       setTimeout(() => this.initMap(lat, lon), 100);
       return;
     }
-  
+
+    // Si el mapa ya existe, solo actualizar la vista
     if (this.map) {
       this.map.setView([lat, lon], 10);
       this.map.invalidateSize();
-      if (this.marker) {
-        this.marker.setLatLng([lat, lon]);
-      } else {
-        this.marker = L.marker([lat, lon]).addTo(this.map)
-          .bindPopup('Ubicación seleccionada')
-          .openPopup();
-      }
-    } else {
-      this.map = L.map('map').setView([lat, lon], 10);
-  
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(this.map);
-  
-      
-      L.tileLayer(`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=feab7053b10786492fa46dc5dc225099`, {
-        attribution: 'Weather data © OpenWeatherMap',
-        opacity: 1
-      }).addTo(this.map);
+      return;
+    }
 
-  
-      this.map.invalidateSize();
-      this.marker = L.marker([lat, lon]).addTo(this.map)
-        .bindPopup('Ubicación seleccionada')
-        .openPopup();
+    // Crear el mapa de Leaflet
+    this.map = L.map('map').setView([lat, lon], 10);
+
+    // Capa base de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(this.map);
+
+    // Agregar capa de OpenWeatherMap
+    this.changeMapLayer();
+  }
+
+  changeMapLayer() {
+    if (!this.map) return;
+
+    // Remover capa anterior si existe
+    if (this.weatherLayer) {
+      this.map.removeLayer(this.weatherLayer);
     }
-  
-    // Actualizar información del clima en el marcador
-    const weatherInfo = `
-      <h4>Weather in ${this.weatherData.name}</h4>
-      <p><strong>Temperature:</strong> ${this.getTempConvert(this.weatherData.main.temp)}</p>
-      <p><strong>Weather:</strong> ${this.weatherData.weather[0].description}</p>
-      <p><strong>Humidity:</strong> ${this.weatherData.main.humidity}%</p>
-      <p><strong>Wind Speed:</strong> ${this.getSpeedConvert(this.weatherData.wind.speed)}</p>
-    `;
-  
-    if (this.marker) {
-      this.marker.setPopupContent(weatherInfo);
-    }
+
+    // Crear nueva capa con el tipo seleccionado
+    this.weatherLayer = L.tileLayer(`https://tile.openweathermap.org/map/${this.selectedMapType}/{z}/{x}/{y}.png?appid=feab7053b10786492fa46dc5dc225099`, {
+      attribution: 'Weather data © OpenWeatherMap',
+      opacity: 1
+    });
+
+    // Agregar nueva capa al mapa
+    this.weatherLayer.addTo(this.map);
   }
   
   getTempConvert(temp: number) {

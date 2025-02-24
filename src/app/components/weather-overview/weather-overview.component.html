@@ -35,12 +35,21 @@
     <div class="coords">
     <p><strong>Lat: </strong>{{weatherData.coord.lat}} <strong> Lon: </strong>{{weatherData.coord.lon}}</p>
     </div>
-    <div>
-      <h3>Map of {{weatherData.name}}</h3>
-      <div id="map" style="height: 400px; width: 100%;"></div>
+    <div class="map-container">
+      <!-- Selector de capas -->
+      <label for="mapType">Selecciona Mapa:</label>
+      <select id="mapType" [(ngModel)]="selectedMapType" (change)="changeMapLayer()">
+        <option value="temp_new">Temperatura</option>
+        <option value="precipitation_new">Precipitación</option>
+        <option value="clouds_new">Nubosidad</option>
+      </select>
+    
+      <!-- Contenedor del Mapa -->
+      <div id="map" class="map"></div>
     </div>
+    
 
-    <!-- Weather Information (Temperatures) -->
+    <!-- Informacion del clima -->
     <section class="weather-details" aria-labelledby="weather-info">
       <h3 id="weather-info" class="visually-hidden">Weather Information</h3>
       <div class="temperature-container">
@@ -53,7 +62,7 @@
       </div>
     </section>
   
-    <!-- Additional Weather Information -->
+    <!-- Informacion adicional del clima -->
     <section class="weather-details" aria-labelledby="additional-info">
       <h3 id="additional-info" class="visually-hidden">Additional Weather Information</h3>
       <div class="additional-info">
